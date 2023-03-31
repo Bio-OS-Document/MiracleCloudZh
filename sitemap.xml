@@ -126,6 +126,16 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://bio-os.github.io/MiracleCloudZh/TUTORIALS/UserGuide/SDK/entry/</loc>
+         <lastmod>2023-03-31</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
+         <loc>https://bio-os.github.io/MiracleCloudZh/TUTORIALS/UserGuide/SDK/workflows/</loc>
+         <lastmod>2023-03-31</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://bio-os.github.io/MiracleCloudZh/TUTORIALS/UserGuide/Workspace/Dashboard/</loc>
          <lastmod>2023-03-31</lastmod>
          <changefreq>daily</changefreq>
