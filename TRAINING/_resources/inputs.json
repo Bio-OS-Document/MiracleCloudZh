@@ -1,0 +1,23 @@
+{
+  "DeNovoCNN.CHILD_BAM": "this.CHILD_BAM",
+  "DeNovoCNN.CHILD_BAM_INDEX": "this.CHILD_BAM_INDEX",
+  "DeNovoCNN.CHILD_VCF": "this.CHILD_VCF",
+  "DeNovoCNN.DELETION_MODEL": "this.DELETION_MODEL",
+  "DeNovoCNN.DISK": 200,
+  "DeNovoCNN.FATHER_BAM": "this.FATHER_BAM",
+  "DeNovoCNN.FATHER_BAM_INDEX": "this.FATHER_BAM_INDEX",
+  "DeNovoCNN.FATHER_VCF": "this.FATHER_VCF",
+  "DeNovoCNN.INSERTION_MODEL": "this.INSERTION_MODEL",
+  "DeNovoCNN.MEMORY": 120,
+  "DeNovoCNN.MOTHER_BAM": "this.MOTHER_BAM",
+  "DeNovoCNN.MOTHER_BAM_INDEX": "this.MOTHER_BAM_INDEX",
+  "DeNovoCNN.MOTHER_VCF": "this.MOTHER_VCF",
+  "DeNovoCNN.NUM_THREAD": 4,
+  "DeNovoCNN.OUTFILE_NAME": "this.DenovoCNN_id",
+  "DeNovoCNN.REFERENCE_GENOME": "this.REFERENCE_GENOME",
+  "DeNovoCNN.REFERENCE_GENOME_INDEX": "this.REFERENCE_GENOME_INDEX",
+  "DeNovoCNN.SNP_MODEL": "this.SNP_MODEL",
+  "DeNovoCNN.WORKING_DIRECTORY": "./",
+  "DeNovoCNN.denovoCNN.CHR": "WholeGenome",
+  "DeNovoCNN.docker": "registry-vpc.miracle.ac.cn/broad/denovocnn:latest"
+}

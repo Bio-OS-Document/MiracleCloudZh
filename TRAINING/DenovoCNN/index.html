@@ -1,0 +1,3264 @@
+
+<!doctype html>
+<html lang="zh" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Miracle Cloud documentation">
+      
+      
+        <meta name="author" content="Red Team at Go-home">
+      
+      
+        <link rel="canonical" href="https://bio-os.github.io/MiracleCloudZh/TRAINING/DenovoCNN/">
+      
+      
+        <link rel="prev" href="../../TUTORIALS/VerifiedWorkspace/mRNAseq/">
+      
+      
+        <link rel="next" href="../../RELATEDRESOURCE/RELATEDRESOURCE/">
+      
+      <link rel="icon" href="../../logo.png">
+      <meta name="generator" content="mkdocs-1.4.2, mkdocs-material-9.1.4">
+    
+    
+      
+        <title>工作流开发者旅程实战-DenovoCNN - Miracle Cloud</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.240905d7.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.a0c5b2b5.min.css">
+      
+      
+
+    
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce((e,_)=>(e<<5)-e+_.charCodeAt(0),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent="">
+  
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&"object"==typeof palette.color)for(var key of Object.keys(palette.color))document.body.setAttribute("data-md-color-"+key,palette.color[key])</script>
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#-denovocnn" class="md-skip">
+          跳转至
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="页眉">
+    <a href="../.." title="Miracle Cloud" class="md-header__button md-logo" aria-label="Miracle Cloud" data-md-component="logo">
+      
+  <img src="../../logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2Z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            Miracle Cloud
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              工作流开发者旅程实战-DenovoCNN
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <form class="md-header__option" data-md-component="palette">
+        
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to dark mode"  type="radio" name="__palette" id="__palette_1">
+          
+            <label class="md-header__button md-icon" title="Switch to dark mode" for="__palette_2" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a4 4 0 0 0-4 4 4 4 0 0 0 4 4 4 4 0 0 0 4-4 4 4 0 0 0-4-4m0 10a6 6 0 0 1-6-6 6 6 0 0 1 6-6 6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+          
+          <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="" data-md-color-accent=""  aria-label="Switch to light mode"  type="radio" name="__palette" id="__palette_2">
+          
+            <label class="md-header__button md-icon" title="Switch to light mode" for="__palette_1" hidden>
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 18c-.89 0-1.74-.2-2.5-.55C11.56 16.5 13 14.42 13 12c0-2.42-1.44-4.5-3.5-5.45C10.26 6.2 11.11 6 12 6a6 6 0 0 1 6 6 6 6 0 0 1-6 6m8-9.31V4h-4.69L12 .69 8.69 4H4v4.69L.69 12 4 15.31V20h4.69L12 23.31 15.31 20H20v-4.69L23.31 12 20 8.69Z"/></svg>
+            </label>
+          
+        
+      </form>
+    
+    
+      <div class="md-header__option">
+        <div class="md-select">
+          
+          <button class="md-header__button md-icon" aria-label="选择当前语言">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m12.87 15.07-2.54-2.51.03-.03A17.52 17.52 0 0 0 14.07 6H17V4h-7V2H8v2H1v2h11.17C11.5 7.92 10.44 9.75 9 11.35 8.07 10.32 7.3 9.19 6.69 8h-2c.73 1.63 1.73 3.17 2.98 4.56l-5.09 5.02L4 19l5-5 3.11 3.11.76-2.04M18.5 10h-2L12 22h2l1.12-3h4.75L21 22h2l-4.5-12m-2.62 7 1.62-4.33L19.12 17h-3.24Z"/></svg>
+          </button>
+          <div class="md-select__inner">
+            <ul class="md-select__list">
+              
+                <li class="md-select__item">
+                  <a href="/MiracleCloud/" hreflang="en" class="md-select__link">
+                    English
+                  </a>
+                </li>
+              
+                <li class="md-select__item">
+                  <a href="/MiracleCloudZh/" hreflang="zh" class="md-select__link">
+                    简体中文
+                  </a>
+                </li>
+              
+            </ul>
+          </div>
+        </div>
+      </div>
+    
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+<nav class="md-nav md-nav--primary" aria-label="导航栏" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="Miracle Cloud" class="md-nav__button md-logo" aria-label="Miracle Cloud" data-md-component="logo">
+      
+  <img src="../../logo.png" alt="logo">
+
+    </a>
+    Miracle Cloud
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_1" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_1" id="__nav_1_label" tabindex="0">
+          动态与公告
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_1_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_1">
+          <span class="md-nav__icon md-icon"></span>
+          动态与公告
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../RELEASENOTE/Release/" class="md-nav__link">
+        产品动态
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../RELEASENOTE/Notice/" class="md-nav__link">
+        产品公告
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+          概览
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_2">
+          <span class="md-nav__icon md-icon"></span>
+          概览
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../OVERVIE/MiracleCloud/Introduction/" class="md-nav__link">
+        Miracle Cloud简介
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../OVERVIE/Glossary/Glossary/" class="md-nav__link">
+        术语库
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../OVERVIE/Advantages/Advantages/" class="md-nav__link">
+        核心优势
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../OVERVIE/Scenario/" class="md-nav__link">
+        应用场景
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+          用户指南
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_3">
+          <span class="md-nav__icon md-icon"></span>
+          用户指南
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_1" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_1" id="__nav_3_1_label" tabindex="0">
+          快速开始
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_1_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_3_1">
+          <span class="md-nav__icon md-icon"></span>
+          快速开始
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../TUTORIALS/QuickStart/FiveMinuteIntro/" class="md-nav__link">
+        FiveMinuteIntro
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../TUTORIALS/QuickStart/DiggerQuickStart/" class="md-nav__link">
+        Digger QuickStart
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../TUTORIALS/QuickStart/QuikstartWorkspace/" class="md-nav__link">
+        Workspace QuickStart
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../TUTORIALS/QuickStart/QuikstartWorkflow/" class="md-nav__link">
+        Workflow QuickStart
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../TUTORIALS/QuickStart/QuikstartDataManagement/" class="md-nav__link">
+        Data Management QuickStart
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../TUTORIALS/QuickStart/Notebooks/" class="md-nav__link">
+        Notebooks QuickStart
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_2" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_2" id="__nav_3_2_label" tabindex="0">
+          工作空间
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_2_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_3_2">
+          <span class="md-nav__icon md-icon"></span>
+          工作空间
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../TUTORIALS/QuickStart/FiveMinuteIntro/" class="md-nav__link">
+        工作空间
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../TUTORIALS/UserGuide/Workspace/Dashboard/" class="md-nav__link">
+        Dashboard
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../TUTORIALS/UserGuide/Workspace/Data/" class="md-nav__link">
+        数据
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../TUTORIALS/UserGuide/Workspace/Notebooks/" class="md-nav__link">
+        Notebooks
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../TUTORIALS/UserGuide/Workspace/Workflow/" class="md-nav__link">
+        工作流
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../TUTORIALS/UserGuide/Workspace/JobHistory/" class="md-nav__link">
+        分析历史
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../TUTORIALS/UserGuide/Workspace/Environment/" class="md-nav__link">
+        环境管理
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../TUTORIALS/UserGuide/Workspace/Member/" class="md-nav__link">
+        成员管理
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_3" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_3" id="__nav_3_3_label" tabindex="0">
+          资源仓库
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_3_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_3_3">
+          <span class="md-nav__icon md-icon"></span>
+          资源仓库
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../TUTORIALS/UserGuide/Digger/" class="md-nav__link">
+        Digger
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../TUTORIALS/UserGuide/ContainerRegistry/" class="md-nav__link">
+        Container Registry
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../TUTORIALS/UserGuide/DataSets/" class="md-nav__link">
+        DataSets
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../TUTORIALS/UserGuide/Dockstore/" class="md-nav__link">
+        Dockstore
+      </a>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../TUTORIALS/UserGuide/GitLab/" class="md-nav__link">
+        GitLab
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_4" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_4" id="__nav_3_4_label" tabindex="0">
+          开发者工具
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_4_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_3_4">
+          <span class="md-nav__icon md-icon"></span>
+          开发者工具
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../TUTORIALS/UserGuide/CLI_SDK/" class="md-nav__link">
+        API参考指南
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_5" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_5" id="__nav_3_5_label" tabindex="0">
+          最佳实践
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_5_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_3_5">
+          <span class="md-nav__icon md-icon"></span>
+          最佳实践
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../TUTORIALS/BestPratices/GenomeanalysisusingGATK/" class="md-nav__link">
+        使用GATK进行变异检测
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+            
+              
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3_6" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_3_6" id="__nav_3_6_label" tabindex="0">
+          Verified Workspace
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_3_6_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_3_6">
+          <span class="md-nav__icon md-icon"></span>
+          Verified Workspace
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../TUTORIALS/VerifiedWorkspace/mRNAseq/" class="md-nav__link">
+        mRNA-seq
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+    
+  
+  
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+      
+      
+      
+        <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+          培训课程
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+        <label class="md-nav__title" for="__nav_4">
+          <span class="md-nav__icon md-icon"></span>
+          培训课程
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+    
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          工作流开发者旅程实战-DenovoCNN
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        工作流开发者旅程实战-DenovoCNN
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    实战任务
+  </a>
+  
+    <nav class="md-nav" aria-label="实战任务">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    分析场景
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    需要完成的动作
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    一、准备工作
+  </a>
+  
+    <nav class="md-nav" aria-label="一、准备工作">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    1.1 虚拟机登陆
+  </a>
+  
+    <nav class="md-nav" aria-label="1.1 虚拟机登陆">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    (1) 虚拟机账号：
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    (2) 登陆方式：
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-miracle-cloud" class="md-nav__link">
+    1.2 访问 Miracle Cloud 云平台
+  </a>
+  
+    <nav class="md-nav" aria-label="1.2 访问 Miracle Cloud 云平台">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-miracle-cloud" class="md-nav__link">
+    (1) Miracle Cloud 账号：
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13" class="md-nav__link">
+    1.3 准备测试数据
+  </a>
+  
+    <nav class="md-nav" aria-label="1.3 准备测试数据">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#131" class="md-nav__link">
+    1.3.1 虚拟机测试数据准备
+  </a>
+  
+    <nav class="md-nav" aria-label="1.3.1 虚拟机测试数据准备">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_1" class="md-nav__link">
+    (1) 虚拟机个人文件夹准备：
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_1" class="md-nav__link">
+    (2) 虚拟机公共数据查看
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    (3) 复制测试代码到个人文件夹
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#132-miracle-cloud" class="md-nav__link">
+    1.3.2 Miracle Cloud 测试数据准备
+  </a>
+  
+    <nav class="md-nav" aria-label="1.3.2 Miracle Cloud 测试数据准备">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-digger-developer-workspace" class="md-nav__link">
+    (1) Digger 仓库查找 Developer Workspace：
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-developer" class="md-nav__link">
+    (2) 在个人工作空间查看 Developer：
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14" class="md-nav__link">
+    1.4 软件镜像查看
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    二、虚拟机命令行运行测试
+  </a>
+  
+    <nav class="md-nav" aria-label="二、虚拟机命令行运行测试">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    2.1 查看命令行脚本
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22" class="md-nav__link">
+    2.2  命令行脚本测试运行
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    三、工作流封装和本地测试
+  </a>
+  
+    <nav class="md-nav" aria-label="三、工作流封装和本地测试">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-task" class="md-nav__link">
+    3.1 工作流 task 定义
+  </a>
+  
+    <nav class="md-nav" aria-label="3.1 工作流 task 定义">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_2" class="md-nav__link">
+    (1) 明确输入参数
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-wdl-task-command" class="md-nav__link">
+    (2)  WDL task command 编码
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-wdl-task" class="md-nav__link">
+    (2)  WDL task 定义
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-workflow-wdl" class="md-nav__link">
+    (2)  Workflow 层面 WDL 封装
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-wdl" class="md-nav__link">
+    3.2  本地 WDL 工作流测试运行
+  </a>
+  
+    <nav class="md-nav" aria-label="3.2  本地 WDL 工作流测试运行">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-wdl" class="md-nav__link">
+    (1)  WDL 语法校验及输入参数模板生成
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_2" class="md-nav__link">
+    (2)  测试运行
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_1" class="md-nav__link">
+    (3) 运行结果查看
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wdl" class="md-nav__link">
+    本地 WDL 测试运行小结：
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wdl_1" class="md-nav__link">
+    **四、WDL 上传代码仓库
+  </a>
+  
+    <nav class="md-nav" aria-label="**四、WDL 上传代码仓库">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41" class="md-nav__link">
+    4.1 登陆代码仓库
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-project-wdl" class="md-nav__link">
+    4.2 创建 Project 并上传 WDL 代码
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#miracle-cloudmc" class="md-nav__link">
+    五、Miracle Cloud（MC）工作流测试
+  </a>
+  
+    <nav class="md-nav" aria-label="五、Miracle Cloud（MC）工作流测试">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-gitlab-mc" class="md-nav__link">
+    **5.1 从 Gitlab 中将工作流导入到 MC 中
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-data-model-preperation" class="md-nav__link">
+    ** 5.2  Data Model Preperation
+  </a>
+  
+    <nav class="md-nav" aria-label="** 5.2  Data Model Preperation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#521-data-upload" class="md-nav__link">
+    **5.2.1 Data upload
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#522-data-model" class="md-nav__link">
+    **5.2.2 制作 Data Model
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53" class="md-nav__link">
+    5.3 工作流运行
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#54" class="md-nav__link">
+    5.4 工作流运行结果查看
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    六、运行日志
+  </a>
+  
+    <nav class="md-nav" aria-label="六、运行日志">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-miracle-cloud" class="md-nav__link">
+    6.1 Miracle Cloud 工作流运行详情
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-miracle-cloud" class="md-nav__link">
+    6.2 Miracle Cloud 工作流运行详情
+  </a>
+  
+    <nav class="md-nav" aria-label="6.2 Miracle Cloud 工作流运行详情">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#621-task" class="md-nav__link">
+    6.2.1 task 级别运行详情:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#622-workflow" class="md-nav__link">
+    6.2.2 workflow 级别运行详情:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dockstore" class="md-nav__link">
+    **七、将工作流注册到 Dockstore
+  </a>
+  
+    <nav class="md-nav" aria-label="**七、将工作流注册到 Dockstore">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71" class="md-nav__link">
+    7.1 登陆工作流仓库
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72" class="md-nav__link">
+    7.2 工作流注册
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    八、经验总结
+  </a>
+  
+    <nav class="md-nav" aria-label="八、经验总结">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81" class="md-nav__link">
+    8.1 如何利用日志/报错定位报错点
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82-wdl" class="md-nav__link">
+    8.2 WDL 部分
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#71-docker-image-modification-and-save" class="md-nav__link">
+    7.1 Docker Image Modification and Save
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-wdl" class="md-nav__link">
+    7.2 WDL 中利用相对路径索引输出
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+      
+      
+      
+      <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+      
+      
+      
+        <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+          相关资源
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+        <label class="md-nav__title" for="__nav_5">
+          <span class="md-nav__icon md-icon"></span>
+          相关资源
+        </label>
+        <ul class="md-nav__list" data-md-scrollfix>
+          
+            
+              
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../RELATEDRESOURCE/RELATEDRESOURCE/" class="md-nav__link">
+        工作流编写
+      </a>
+    </li>
+  
+
+            
+          
+        </ul>
+      </nav>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../Q%26A/QA/" class="md-nav__link">
+        常见问题
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../ABOUT/AboutUS/" class="md-nav__link">
+        关于我们
+      </a>
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="目录">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      目录
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#_1" class="md-nav__link">
+    实战任务
+  </a>
+  
+    <nav class="md-nav" aria-label="实战任务">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#_2" class="md-nav__link">
+    分析场景
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_3" class="md-nav__link">
+    需要完成的动作
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_4" class="md-nav__link">
+    一、准备工作
+  </a>
+  
+    <nav class="md-nav" aria-label="一、准备工作">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11" class="md-nav__link">
+    1.1 虚拟机登陆
+  </a>
+  
+    <nav class="md-nav" aria-label="1.1 虚拟机登陆">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1" class="md-nav__link">
+    (1) 虚拟机账号：
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2" class="md-nav__link">
+    (2) 登陆方式：
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-miracle-cloud" class="md-nav__link">
+    1.2 访问 Miracle Cloud 云平台
+  </a>
+  
+    <nav class="md-nav" aria-label="1.2 访问 Miracle Cloud 云平台">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-miracle-cloud" class="md-nav__link">
+    (1) Miracle Cloud 账号：
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13" class="md-nav__link">
+    1.3 准备测试数据
+  </a>
+  
+    <nav class="md-nav" aria-label="1.3 准备测试数据">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#131" class="md-nav__link">
+    1.3.1 虚拟机测试数据准备
+  </a>
+  
+    <nav class="md-nav" aria-label="1.3.1 虚拟机测试数据准备">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_1" class="md-nav__link">
+    (1) 虚拟机个人文件夹准备：
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_1" class="md-nav__link">
+    (2) 虚拟机公共数据查看
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3" class="md-nav__link">
+    (3) 复制测试代码到个人文件夹
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#132-miracle-cloud" class="md-nav__link">
+    1.3.2 Miracle Cloud 测试数据准备
+  </a>
+  
+    <nav class="md-nav" aria-label="1.3.2 Miracle Cloud 测试数据准备">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-digger-developer-workspace" class="md-nav__link">
+    (1) Digger 仓库查找 Developer Workspace：
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-developer" class="md-nav__link">
+    (2) 在个人工作空间查看 Developer：
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14" class="md-nav__link">
+    1.4 软件镜像查看
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_5" class="md-nav__link">
+    二、虚拟机命令行运行测试
+  </a>
+  
+    <nav class="md-nav" aria-label="二、虚拟机命令行运行测试">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21" class="md-nav__link">
+    2.1 查看命令行脚本
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22" class="md-nav__link">
+    2.2  命令行脚本测试运行
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_6" class="md-nav__link">
+    三、工作流封装和本地测试
+  </a>
+  
+    <nav class="md-nav" aria-label="三、工作流封装和本地测试">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#31-task" class="md-nav__link">
+    3.1 工作流 task 定义
+  </a>
+  
+    <nav class="md-nav" aria-label="3.1 工作流 task 定义">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1_2" class="md-nav__link">
+    (1) 明确输入参数
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-wdl-task-command" class="md-nav__link">
+    (2)  WDL task command 编码
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-wdl-task" class="md-nav__link">
+    (2)  WDL task 定义
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2-workflow-wdl" class="md-nav__link">
+    (2)  Workflow 层面 WDL 封装
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#32-wdl" class="md-nav__link">
+    3.2  本地 WDL 工作流测试运行
+  </a>
+  
+    <nav class="md-nav" aria-label="3.2  本地 WDL 工作流测试运行">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#1-wdl" class="md-nav__link">
+    (1)  WDL 语法校验及输入参数模板生成
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#2_2" class="md-nav__link">
+    (2)  测试运行
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#3_1" class="md-nav__link">
+    (3) 运行结果查看
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#wdl" class="md-nav__link">
+    本地 WDL 测试运行小结：
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#wdl_1" class="md-nav__link">
+    **四、WDL 上传代码仓库
+  </a>
+  
+    <nav class="md-nav" aria-label="**四、WDL 上传代码仓库">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41" class="md-nav__link">
+    4.1 登陆代码仓库
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#_7" class="md-nav__link">
+    
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-project-wdl" class="md-nav__link">
+    4.2 创建 Project 并上传 WDL 代码
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#miracle-cloudmc" class="md-nav__link">
+    五、Miracle Cloud（MC）工作流测试
+  </a>
+  
+    <nav class="md-nav" aria-label="五、Miracle Cloud（MC）工作流测试">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-gitlab-mc" class="md-nav__link">
+    **5.1 从 Gitlab 中将工作流导入到 MC 中
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-data-model-preperation" class="md-nav__link">
+    ** 5.2  Data Model Preperation
+  </a>
+  
+    <nav class="md-nav" aria-label="** 5.2  Data Model Preperation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#521-data-upload" class="md-nav__link">
+    **5.2.1 Data upload
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#522-data-model" class="md-nav__link">
+    **5.2.2 制作 Data Model
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53" class="md-nav__link">
+    5.3 工作流运行
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#54" class="md-nav__link">
+    5.4 工作流运行结果查看
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_8" class="md-nav__link">
+    六、运行日志
+  </a>
+  
+    <nav class="md-nav" aria-label="六、运行日志">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#61-miracle-cloud" class="md-nav__link">
+    6.1 Miracle Cloud 工作流运行详情
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#62-miracle-cloud" class="md-nav__link">
+    6.2 Miracle Cloud 工作流运行详情
+  </a>
+  
+    <nav class="md-nav" aria-label="6.2 Miracle Cloud 工作流运行详情">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#621-task" class="md-nav__link">
+    6.2.1 task 级别运行详情:
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#622-workflow" class="md-nav__link">
+    6.2.2 workflow 级别运行详情:
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dockstore" class="md-nav__link">
+    **七、将工作流注册到 Dockstore
+  </a>
+  
+    <nav class="md-nav" aria-label="**七、将工作流注册到 Dockstore">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#71" class="md-nav__link">
+    7.1 登陆工作流仓库
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72" class="md-nav__link">
+    7.2 工作流注册
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#_9" class="md-nav__link">
+    八、经验总结
+  </a>
+  
+    <nav class="md-nav" aria-label="八、经验总结">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#81" class="md-nav__link">
+    8.1 如何利用日志/报错定位报错点
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#82-wdl" class="md-nav__link">
+    8.2 WDL 部分
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#71-docker-image-modification-and-save" class="md-nav__link">
+    7.1 Docker Image Modification and Save
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#72-wdl" class="md-nav__link">
+    7.2 WDL 中利用相对路径索引输出
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="-denovocnn">工作流开发者旅程实战-DenovoCNN</h1>
+<h3 id="_1">实战任务</h3>
+<p>使用公开 docker 镜像，完成 shell 脚本到 WDL 的封装，本地环境运行测试和云上工作流测试。</p>
+<h4 id="_2">分析场景</h4>
+<p>分析目标：</p>
+<p>在家系（父亲，母亲和孩子）WGS 数据中检测孩子基因组中 denovo mutations</p>
+<p>分析软件：</p>
+<p>DeNovoCNN</p>
+<p><a href="https://github.com/Genome-Bioinformatics-RadboudUMC/DeNovoCNN">https://github.com/Genome-Bioinformatics-RadboudUMC/DeNovoCNN</a></p>
+<h4 id="_3">需要完成的动作</h4>
+<ol>
+<li>完成本地 WDL 工作流封装、测试和工作流上传；</li>
+</ol>
+<p>shell 脚本封装为 WDL 脚本</p>
+<p>拉取公开镜像</p>
+<p>准备好测试数据</p>
+<pre><code> 完成本地测试运行
+
+ 测试成功后上传WDL到代码仓库
+</code></pre>
+<ol>
+<li>完成工作流在 Miracle Cloud 中运行</li>
+</ol>
+<p>完成工作流从代码仓库导入 Miracle Cloud</p>
+<p>使用镜像仓库中的镜像</p>
+<p>使用公共测试数据集和参考基因集</p>
+<p>完成 Miracle Cloud 参数配置和运行</p>
+<ol>
+<li>Miracle Cloud 运行历史和结果查看</li>
+</ol>
+<p>"**": 表示不需要执行部分</p>
+<h3 id="_4">一、准备工作</h3>
+<p>电脑安装好虚拟机远程连接工具：Xshell .. ,等。</p>
+<h4 id="11">1.1 虚拟机登陆</h4>
+<p>通过远程工具登陆访问虚拟机，并执行是代码编辑工作。</p>
+<h5 id="1">(1) 虚拟机账号：</h5>
+<p>IP: 10.20.16.170</p>
+<p>账号：mc_user</p>
+<p>密码：AE1B4D9D1619</p>
+<h5 id="2">(2) 登陆方式：</h5>
+<ol>
+<li>Mac 电脑通过 terminal 运行:</li>
+</ol>
+<pre><code class="language-sql">$ ssh mc_user@10.20.16.170
+# 根据提示填写账号和密码
+</code></pre>
+<ol>
+<li>Win10 电脑通过是 ssh 连接虚拟机</li>
+</ol>
+<p>快捷键 win + R：</p>
+<p><img alt="" src="../_resources/IhpXbf5e7oDLhExKUAncTCkun7c.png" /></p>
+<p>enter 键进入 cmd 界面，通过 ssh 登陆：</p>
+<pre><code class="language-sql">ssh mc_user@10.20.16.170
+</code></pre>
+<p><img alt="" src="../_resources/LV6NbdgdXotqtwxVb6bc1rYSnxg.png" /></p>
+<h4 id="12-miracle-cloud">1.2 访问 Miracle Cloud 云平台</h4>
+<p>通过网页 IP 地址访问 Miracle Cloud 云平台。</p>
+<h5 id="1-miracle-cloud">(1) Miracle Cloud 账号：</h5>
+<p>网页链接地址: <a href="https://cloud.miracle.ac.cn/">https://cloud.miracle.ac.cn/</a></p>
+<p>主账号：training</p>
+<p>子账号：名字拼音小写</p>
+<p>初始密码：Pwd123456!</p>
+<h4 id="13">1.3 准备测试数据</h4>
+<p>查看并复制测试数据到虚拟机个人文件夹下</p>
+<h5 id="131">1.3.1 虚拟机测试数据准备</h5>
+<h6 id="1_1">(1) 虚拟机个人文件夹准备：</h6>
+<p>登陆虚拟机，进入家目录；</p>
+<p>创建个人文件夹：姓名全拼 （李昭强：lizhaoqiang）；</p>
+<p>从并拷贝代码到本地，测试数据不用拷贝</p>
+<pre><code class="language-bash">#进入家目录
+$ cd ~
+
+# 创建个人文件夹
+$ mkdir li_zq
+</code></pre>
+<h6 id="2_1">(2) 虚拟机公共数据查看</h6>
+<p>查看虚拟机公共数据文件：测试代码，测试数据；</p>
+<pre><code class="language-bash"># 查看数据
+ $ ls /data/TrainData/01_code 
+
+ ## WDL代码和shell脚本
+    DenovoCNN.sh  DenovoCNN.wdl  input.json
+
+ ## 测试数据
+ $ ls /data/TrainData/02_TestData 
+        HCC-004-1.chr22.recode.vcf
+        HCC-004-1.recaled.chr22.bam
+        HCC-004-1.recaled.chr22.bam.bai
+        HCC-004-2.chr22.recode.vcf
+        HCC-004-2.recaled.chr22.bam
+        HCC-004-2.recaled.chr22.bam.bai
+        HCC-004-3.chr22.recode.vcf
+        HCC-004-3.recaled.chr22.bam
+        HCC-004-3.recaled.chr22.bam.bai
+
+ ## 参考基因组数据
+ $ ls /data/TrainData/03_RefData
+        Homo_sapiens_assembly38.fasta
+        Homo_sapiens_assembly38.fasta.fai
+</code></pre>
+<h6 id="3">(3) 复制测试代码到个人文件夹</h6>
+<pre><code class="language-bash">## WDL代码和shell脚本
+$ cp -r /data/TrainData/01_code  ~/lizhaoqiang
+</code></pre>
+<h5 id="132-miracle-cloud">1.3.2 Miracle Cloud 测试数据准备</h5>
+<p>从 Digger 仓库中将 Developer 拷贝到个人 Workspaces 空间。</p>
+<h6 id="1-digger-developer-workspace">(1) Digger 仓库查找 Developer Workspace：</h6>
+<p>碱基标签后下方“...”，选择复制，复制 Developer 到个人工作空间</p>
+<p><img alt="" src="../_resources/boxcn9ucCYp1WzIba7fWCFz1ZVb.png" /></p>
+<h6 id="2-developer">(2) 在个人工作空间查看 Developer：</h6>
+<p>进入<strong>Workspace</strong>，查看<strong>Developer-copy</strong>中测试数据<strong>：</strong></p>
+<p><img alt="" src="../_resources/boxcnu62eSnH4WjITWFRWIpSsQh.png" /></p>
+<p>测试数据在 Digger 中 Workspace <strong>Developer</strong>中的路径：</p>
+<p><img alt="" src="../_resources/boxcnfQjFeAZ9LDmTwyti4yfvMb.png" /></p>
+<h4 id="14">1.4 软件镜像查看</h4>
+<p>登陆虚拟机后，通过命令行工具 docker 查看镜像：</p>
+<pre><code class="language-bash">$ docker images 
+REPOSITORY                                   TAG       IMAGE ID       CREATED        SIZE
+busybox                                      latest    7cfbbec8963d   9 days ago     4.86MB
+registry-vpc.miracle.ac.cn/broad/denovocnn   latest    3bc33e552eaa   7 months ago   4.42GB
+
+$ docker inspect --format='{{.RepoDigests}}'  registry-vpc.miracle.ac.cn/broad/denovocnn:latest
+[registry-vpc.miracle.ac.cn/broad/denovocnn@sha256:3c1d9b914bcfbaa8f6e4c7199b5b924651938377c5b5aa5cd113bdd318606b9e]
+</code></pre>
+<p>显示镜像地址为：</p>
+<pre><code class="language-sql">registry-vpc.miracle.ac.cn/broad/denovocnn:latest
+</code></pre>
+<p>镜像 sha256 编号为：</p>
+<pre><code class="language-sql">registry-vpc.miracle.ac.cn/broad/denovocnn@sha256:3c1d9b914bcfbaa8f6e4c7199b5b924651938377c5b5aa5cd113bdd318606b9e
+</code></pre>
+<h3 id="_5">二、虚拟机命令行运行测试</h3>
+<p>在虚拟机个人文件夹下运行命令行脚本</p>
+<h5 id="21">2.1 查看命令行脚本</h5>
+<p>参考本文档 1.3.1 中（3）条：</p>
+<pre><code class="language-bash"># 进入个01_code文件夹中
+$ cd 01_code 
+
+# 查看文件列表
+$ ls ./
+  DenovoCNN.sh  DenovoCNN.wdl  input.json
+
+ # 查看命令行脚本DenovoCNN.sh内容
+ $ vim DenovoCNN.sh
+</code></pre>
+<p>DenovoCNN.sh 脚本内容如下:</p>
+<pre><code>#!/bin/bash
+docker run -v &quot;/data/TrainData&quot;:&quot;/input1&quot; \
+    -v $(pwd)&quot;/Result&quot;:&quot;/Result&quot; \
+    registry-vpc.miracle.ac.cn/broad/denovocnn:latest /app/apply_denovocnn.sh \
+    --workdir=/Result  \
+    --child-vcf=/input1/02_TestData/HCC-004-1.chr22.recode.vcf \
+    --father-vcf=/input1/02_TestData/HCC-004-2.chr22.recode.vcf \
+    --mother-vcf=/input1/02_TestData/HCC-004-3.chr22.recode.vcf  \
+    --child-bam=/input1/02_TestData/HCC-004-1.recaled.chr22.bam\
+    --father-bam=/input1/02_TestData/HCC-004-2.recaled.chr22.bam \
+    --mother-bam=/input1/02_TestData/HCC-004-3.recaled.chr22.bam \
+    --snp-model=/app/models/snp \
+    --in-model=/app/models/ins \
+    --del-model=/app/models/del \
+    --genome=/input1/03_RefData/Homo_sapiens_assembly38.fasta \
+    --output=predictions.csv
+</code></pre>
+<p>退出 q:</p>
+<h5 id="22">2.2  命令行脚本测试运行</h5>
+<p>测试命令行脚本是否可运行。</p>
+<p>运行时间比较长，资源紧张，会后尝试。</p>
+<pre><code class="language-bash"># 进入个人文件夹
+$ cd ~/lizhaoqiang/01_code
+
+# 运行脚本 
+$ ./DenovoCNN.sh
+    DenovoCNN finished.
+    Output in:
+    /Result/predictions.csv
+
+## 运行结果文件：其中文件&lt;strong&gt;predictions.csv&lt;/strong&gt;&lt;strong&gt;是结果文件&lt;/strong&gt;
+$ ls Result/
+    child.vcf.gz  child.vcf.gz.tbi  
+    father.vcf.gz  father.vcf.gz.tbi  
+    mother.vcf.gz  mother.vcf.gz.tbi  
+    variants_list.txt &lt;strong&gt;predictions.csv&lt;/strong&gt;
+</code></pre>
+<p>会上大家可以跳过运行，直接查看已有的运行结果</p>
+<pre><code># 查看已经运行的历史结果
+$ ls /home/mc_user/01_code/Result 
+    child.vcf.gz  child.vcf.gz.tbi  
+    father.vcf.gz  father.vcf.gz.tbi  
+    mother.vcf.gz  mother.vcf.gz.tbi  
+    variants_list.txt &lt;strong&gt;predictions.csv&lt;/strong&gt;
+</code></pre>
+<h3 id="_6">三、工作流封装和本地测试</h3>
+<p>明确工作流核心模块，将运行代码封装为 WDL 脚本，并完成本地测试运行。</p>
+<p>核心代码如下：</p>
+<pre><code class="language-shell">bash /app/apply_denovocnn.sh \
+    --workdir=/Result  \
+    --child-vcf=/input1/02_TestData/HCC-004-1.chr22.recode.vcf \
+    --father-vcf=/input1/02_TestData/HCC-004-2.chr22.recode.vcf \
+    --mother-vcf=/input1/02_TestData/HCC-004-3.chr22.recode.vcf  \
+    --child-bam=/input1/02_TestData/HCC-004-1.recaled.chr22.bam\
+    --father-bam=/input1/02_TestData/HCC-004-2.recaled.chr22.bam \
+    --mother-bam=/input1/02_TestData/HCC-004-3.recaled.chr22.bam \
+    --snp-model=/app/models/snp \
+    --in-model=/app/models/ins \
+    --del-model=/app/models/del \
+    --genome=/input1/03_RefData/Homo_sapiens_assembly38.fasta \
+    --output=predictions.csv
+</code></pre>
+<h4 id="31-task">3.1 工作流 task 定义</h4>
+<h5 id="1_2">(1) 明确输入参数</h5>
+<p>明确 wdl 中要求全量的输入参数，包括命令行中不显示输入的文件：bam.bai 和 fasta.fai 文件。</p>
+<p>明确 task 输入、输出变量类型</p>
+<h5 id="2-wdl-task-command">(2)  WDL task command 编码</h5>
+<p>task 中的 command 部分就是命令行部分代码</p>
+<p>WDL Task 定义：</p>
+<pre><code>command {
+    set -euo pipefail
+    bash /app/apply_denovocnn.sh \
+        -w=${WORKING_DIRECTORY} \
+        --child-vcf=${CHILD_VCF} \
+        --father-vcf=${FATHER_VCF} \
+        --mother-vcf=${MOTHER_VCF} \
+        --child-bam=${CHILD_BAM} \
+        --father-bam=${FATHER_BAM} \
+        --mother-bam=${MOTHER_BAM} \
+        --snp-model=${SNP_MODEL} \
+        --in-model=${INSERTION_MODEL} \
+        --del-model=${DELETION_MODEL} \
+        --genome=${REFERENCE_GENOME} \
+        --output=${OUTFILE_NAME}_predictions.csv
+    }
+</code></pre>
+<p>注意：</p>
+<p><strong>1. task commad Useful for debugging</strong><strong> set -euo pipefail</strong></p>
+<p>set -euo pipefile can be useful when used as the first line within the command &lt;&lt;&lt; &gt;&gt;&gt; section of a WDL task. This command will help capture errors at the point where they occur in your unix code.</p>
+<p><img alt="" src="../_resources/boxcnFQuT7yJi0UTetVIu3Gl3cb.png" /></p>
+<h5 id="2-wdl-task">(2)  WDL task 定义</h5>
+<p>WDL 常用变量类型：</p>
+<p>String: 字符串类型</p>
+<p>File: 文件类型</p>
+<p>Int: 整型</p>
+<p>定义：</p>
+<p>输入文件:</p>
+<p>输出文件：</p>
+<pre><code class="language-bash">task DenovoCNN {
+        input {
+                String WORKING_DIRECTORY
+                File CHILD_VCF
+                File FATHER_VCF
+                File MOTHER_VCF
+                File CHILD_BAM
+                File FATHER_BAM
+                File MOTHER_BAM
+                File CHILD_BAM_INDEX
+                File FATHER_BAM_INDEX
+                File MOTHER_BAM_INDEX
+                String SNP_MODEL
+                String INSERTION_MODEL
+                String DELETION_MODEL
+                File REFERENCE_GENOME
+                String OUTFILE_NAME
+
+                String docker
+                Int NUM_THREAD
+                Int MEMORY
+                Int DISK
+
+        }
+
+        command {
+        set -euo pipefail
+        bash apply_denovocnn.sh \
+                -w=${WORKING_DIRECTORY} \
+                -cv=${CHILD_VCF} \
+                -fv=${FATHER_VCF} \
+                -mv=${MOTHER_VCF} \
+                -cb=${CHILD_BAM} \
+                -fb=${FATHER_BAM} \
+                -mb=${MOTHER_BAM} \
+                -sm=${SNP_MODEL} \
+                -im=${INSERTION_MODEL} \
+                -dm=${DELETION_MODEL} \
+                -g=${REFERENCE_GENOME} \
+                -o=${OUTFILE_NAME}_predictions.csv
+        }
+        runtime {
+                docker: docker
+                cpu: &quot;${NUM_THREAD}&quot;
+                memory: &quot;${MEMORY} GB&quot;
+                disk: &quot;${DISK} GB&quot;
+        }
+        output {
+                File output_vcf=&quot;${WORKING_DIRECTORY}/${OUTFILE_NAME}_predictions.csv&quot;
+        }
+ }
+</code></pre>
+<h5 id="2-workflow-wdl">(2)  Workflow 层面 WDL 封装</h5>
+<p>WDL 文件编写；创建一个工作流文件 DenovoCNN.wdl</p>
+<pre><code>$ vim DenovoCNN.wdl
+</code></pre>
+<p>复制一下内容到文件中后保存：</p>
+<pre><code>version 1.0
+
+workflow DeNovoCNN{
+        meta {
+                description: &quot; DeNovoCNN is a combination of three models for the calling of substitution, deletion and insertion DNMs&quot;
+        }
+        input {
+                String WORKING_DIRECTORY
+                File CHILD_VCF
+                File FATHER_VCF
+                File MOTHER_VCF
+                File CHILD_BAM
+                File FATHER_BAM
+                File MOTHER_BAM
+                String SNP_MODEL
+                String INSERTION_MODEL
+                String DELETION_MODEL
+                File REFERENCE_GENOME
+                String OUTFILE_NAME
+
+                String docker
+                Int NUM_THREAD
+                Int MEMORY
+                Int DISK
+
+        }
+
+        call DenovoCNN {
+                input:
+                        WORKING_DIRECTORY = WORKING_DIRECTORY,
+                        CHILD_VCF = CHILD_VCF,
+                        FATHER_VCF = FATHER_VCF,
+                        MOTHER_VCF = MOTHER_VCF,
+                        CHILD_BAM = CHILD_BAM,
+                        FATHER_BAM = FATHER_BAM,
+                        MOTHER_BAM = MOTHER_BAM,
+                        CHILD_BAM_INDEX = CHILD_BAM_INDEX,
+                        FATHER_BAM_INDEX = FATHER_BAM_INDEX,
+                        MOTHER_BAM_INDEX = MOTHER_BAM_INDEX,
+                        SNP_MODEL = SNP_MODEL,
+                        INSERTION_MODEL =INSERTION_MODEL,
+                        DELETION_MODEL = DELETION_MODEL,
+                        REFERENCE_GENOME = REFERENCE_GENOME,
+                        OUTFILE_NAME = OUTFILE_NAME,
+
+                        docker = docker,
+                        NUM_THREAD = NUM_THREAD,
+                        MEMORY = MEMORY,
+                        DISK = DISK
+
+                }
+
+
+        ## workflow output
+        output {
+                File output_vcf=DenovoCNN.output_vcf
+        }        
+
+}
+
+
+task DenovoCNN {
+        input {
+                String WORKING_DIRECTORY
+                File WORKING_DIRECTORY
+                File CHILD_VCF
+                File FATHER_VCF
+                File MOTHER_VCF
+                File CHILD_BAM
+                File FATHER_BAM
+                File MOTHER_BAM
+                File CHILD_BAM_INDEX
+                File FATHER_BAM_INDEX
+                File MOTHER_BAM_INDEX
+                String SNP_MODEL
+                String INSERTION_MODEL
+                String DELETION_MODEL
+                File REFERENCE_GENOME
+                String OUTFILE_NAME
+
+                String docker
+                Int NUM_THREAD
+                Int MEMORY
+                Int DISK
+
+        }
+        command {
+        set -euo pipefail
+        bash apply_denovocnn.sh \
+                -w=${WORKING_DIRECTORY} \
+                -cv=${CHILD_VCF} \
+                -fv=${FATHER_VCF} \
+                -mv=${MOTHER_VCF} \
+                -cb=${CHILD_BAM} \
+                -fb=${FATHER_BAM} \
+                -mb=${MOTHER_BAM} \
+                -sm=${SNP_MODEL} \
+                -im=${INSERTION_MODEL} \
+                -dm=${DELETION_MODEL} \
+                -g=${REFERENCE_GENOME} \
+                -o=${OUTFILE_NAME}_predictions.csv
+        }
+        runtime {
+                docker: docker
+                cpu: &quot;${NUM_THREAD}&quot;
+                memory: &quot;${MEMORY} GB&quot;
+                disk: &quot;${DISK} GB&quot;
+        }
+        output {
+                File output_vcf=&quot;${WORKING_DIRECTORY}/${OUTFILE_NAME}_predictions.csv&quot;
+        }
+}
+</code></pre>
+<h4 id="32-wdl">3.2  本地 WDL 工作流测试运行</h4>
+<h5 id="1-wdl">(1)  WDL 语法校验及输入参数模板生成</h5>
+<ol>
+<li>使用 womtool 校验 WDL 语法</li>
+</ol>
+<pre><code class="language-bash">$ womtool validate DenovoCNN.wdl
+</code></pre>
+<ol>
+<li>使用<strong>womtool</strong>生成<strong>DenovoCNN.wdl</strong>脚本的输入文件模板<strong>input.json</strong>文件</li>
+</ol>
+<pre><code class="language-bash">$ womtool inputs DenovoCNN.wdl &gt; input.json
+</code></pre>
+<p>完成 input.json 文件中输入参数的填写：</p>
+<ol>
+<li>用引号括起来；</li>
+<li>文件路径使用绝对路径；</li>
+<li>参考数据</li>
+</ol>
+<pre><code>$ vim input.json
+</code></pre>
+<p>input.json 文件内容如下：</p>
+<pre><code>{
+  &quot;DeNovoCNN.CHILD_BAM&quot;: &quot;/data/TrainData/02_TestData/HCC-004-1.recaled.chr22.bam&quot;,
+  &quot;DeNovoCNN.CHILD_BAM_INDEX&quot;: &quot;/data/TrainData/02_TestData/HCC-004-1.recaled.chr22.bam.bai&quot;,
+  &quot;DeNovoCNN.CHILD_VCF&quot;: &quot;/data/TrainData/02_TestData/HCC-004-1.chr22.recode.vcf&quot;,
+  &quot;DeNovoCNN.SNP_MODEL&quot;: &quot;/app/models/snp&quot;,
+  &quot;DeNovoCNN.FATHER_VCF&quot;: &quot;/data/TrainData/02_TestData/HCC-004-2.chr22.recode.vcf&quot;,
+  &quot;DeNovoCNN.DISK&quot;: &quot;100&quot;,
+  &quot;DeNovoCNN.INSERTION_MODEL&quot;: &quot;/app/models/ins&quot;,
+  &quot;DeNovoCNN.DELETION_MODEL&quot;: &quot;/app/models/del&quot;,
+  &quot;DeNovoCNN.OUTFILE_NAME&quot;: &quot;Test&quot;,
+  &quot;DeNovoCNN.FATHER_BAM_INDEX&quot;: &quot;/data/TrainData/02_TestData/HCC-004-2.recaled.chr22.bam.bai&quot;,
+  &quot;DeNovoCNN.FATHER_BAM&quot;: &quot;/data/TrainData/02_TestData/HCC-004-2.recaled.chr22.bam&quot;,
+  &quot;DeNovoCNN.NUM_THREAD&quot;: &quot;10&quot;,
+  &quot;DeNovoCNN.MEMORY&quot;: &quot;50&quot;,
+  &quot;DeNovoCNN.MOTHER_VCF&quot;: &quot;/data/TrainData/02_TestData/HCC-004-3.chr22.recode.vcf&quot;,
+  &quot;DeNovoCNN.docker&quot;: &quot;registry-vpc.miracle.ac.cn/broad/denovocnn:latest&quot;,
+  &quot;DeNovoCNN.MOTHER_BAM_INDEX&quot;: &quot;/data/TrainData/02_TestData/HCC-004-3.recaled.chr22.bam.bai&quot;,
+  &quot;DeNovoCNN.MOTHER_BAM&quot;: &quot;/data/TrainData/02_TestData/HCC-004-3.recaled.chr22.bam&quot;,
+  &quot;DeNovoCNN.WORKING_DIRECTORY&quot;: &quot;.&quot;,
+  &quot;DeNovoCNN.REFERENCE_GENOME&quot;: &quot;/data/TrainData/03_RefData/Homo_sapiens_assembly38.fasta&quot;,
+  &quot;DeNovoCNN.REFERENCE_GENOME_INDEX&quot;: &quot;/data/TrainData/03_RefData/Homo_sapiens_assembly38.fasta.fai&quot;
+}
+</code></pre>
+<h5 id="2_2">(2)  测试运行</h5>
+<p>使用 wdl 执行引擎 cromwell 运行 wdl 脚本</p>
+<pre><code class="language-bash">$ cromwell run -i input.json DenovoCNN.wdl
+</code></pre>
+<p>虚拟机资源有限，运行时间较长，建议会后操作；</p>
+<p><img alt="" src="../_resources/ZnffbEYtaobfajx8cQicqsimnPh.png" /></p>
+<h5 id="3_1">(3) 运行结果查看</h5>
+<p>可以查看之前运行成功记录</p>
+<pre><code>$ ls /home/mc_user/01_code/cromwell-executions/DeNovoCNN/7bb0cdd2-0c0a-489f-ba4f-61aa0260d609/call-DenovoCNN/execution/
+child.vcf.gz       father.vcf.gz      mother.vcf.gz.tbi  
+script.background  stderr.background  Test_predictions.csv
+child.vcf.gz.tbi   father.vcf.gz.tbi  rc                 
+script.submit      stdout             variants_list.txt
+docker_cid         mother.vcf.gz      script            
+stderr             stdout.background
+</code></pre>
+<pre><code>$ head //home/mc_user/01_code/cromwell-executions/DeNovoCNN/7bb0cdd2-0c0a-489f-ba4f-61aa0260d609/call-DenovoCNN/execution/Test_predictions.csv 
+Chromosome        Start position        Reference        Variant        DeNovoCNN probability        Child coverage        Father coverage        Mother coverage        Child BAM        Father BAM        Mother BAM
+chr22        10514994        G        A        0.0        12        7        7        /cromwell-executions/DeNovoCNN/7bb0cdd2-0c0a-489f-ba4f-61aa0260d609/call-DenovoCNN/inputs/1384161030/HCC-004-1.recaled.chr22.bam        /cromwell-executions/DeNovoCNN/7bb0cdd2-0c0a-489f-ba4f-61aa0260d609/call-DenovoCNN/inputs/1384161030/HCC-004-2.recaled.chr22.bam        /cromwell-executions/DeNovoCNN/7bb0cdd2-0c0a-489f-ba4f-61aa0260d609/call-DenovoCNN/inputs/1384161030/HCC-004-3.recaled.chr22.bam
+chr22        10515074        A        AGAAAGAAG        0.038        9        1        5        /cromwell-executions/DeNovoCNN/7bb0cdd2-0c0a-489f-ba4f-61aa0260d609/call-DenovoCNN/inputs/1384161030/HCC-004-1.recaled.chr22.bam        /cromwell-executions/DeNovoCNN/7bb0cdd2-0c0a-489f-ba4f-61aa0260d609/call-DenovoCNN/inputs/1384161030/HCC-004-2.recaled.chr22.bam        /cromwell-executions/DeNovoCNN/7bb0cdd2-0c0a-489f-ba4f-61aa0260d609/call-DenovoCNN/inputs/1384161030/HCC-004-3.recaled.chr22.bam
+chr22        10528753        CAAA        C        0.001        14        9        1        /cromwell-executions/DeNovoCNN/7bb0cdd2-0c0a-489f-ba4f-61aa0260d609/call-DenovoCNN/inputs/1384161030/HCC-004-1.recaled.chr22.bam        /cromwell-executions/DeNovoCNN/7bb0cdd2-0c0a-489f-ba4f-61aa0260d609/call-DenovoCNN/inputs/1384161030/HCC-004-2.recaled.chr22.bam        /cromwell-executions/DeNovoCNN/7bb0cdd2-0c0a-489f-ba4f-61aa0260d609/call-DenovoCNN/inputs/1384161030/HCC-004-3.recaled.chr22.bam
+chr22        10528753        CAAA        CA        0.001        14        9        1        /cromwell-executions/DeNovoCNN/7bb0cdd2-0c0a-489f-ba4f-61aa0260d609/call-DenovoCNN/inputs/1384161030/HCC-004-1.recaled.chr22.bam        /cromwell-executions/DeNovoCNN/7bb0cdd2-0c0a-489f-ba4f-61aa0260d609/call-DenovoCNN/inputs/1384161030/HCC-004-2.recaled.chr22.bam        /cromwell-executions/DeNovoCNN/7bb0cdd2-0c0a-489f-ba4f-61aa0260d609/call-DenovoCNN/inputs/1384161030/HCC-004-3.recaled.chr22.bam
+</code></pre>
+<h5 id="wdl">本地 WDL 测试运行小结：</h5>
+<p>有以上结果表明：</p>
+<ol>
+<li>WDL 脚本语法、语义没有问题；</li>
+<li>输入文件完整；</li>
+<li>输出文件定义合法；</li>
+<li>容器没有问题；</li>
+<li>WDL 虚拟机测试成功：</li>
+</ol>
+<p>可以开始 Miracle Cloud 运行测试</p>
+<h3 id="wdl_1">**四、WDL 上传代码仓库</h3>
+<p>Miracle Cloud 中工作流是通过代码仓库导入的；</p>
+<p>目前支持的代码仓库有：</p>
+<p>Github</p>
+<p>Gitee</p>
+<p>广州实验室本地化代码仓库 GitLab</p>
+<p>本案例以广州实验室本地化代码仓库 GitLab 为例进行。</p>
+<h4 id="41">4.1 登陆代码仓库</h4>
+<p>网页地址：<a href="https://git.miracle.ac.cn/">https://git.miracle.ac.cn/</a></p>
+<p>登陆方式：</p>
+<p>1.邮箱注册，需要审批通过；</p>
+<p>2.通过 Miracle Cloud 账号登陆，vloc_login；</p>
+<p><img alt="" src="../_resources/boxcnwEsMc28X85lIkao8t95Btc.png" /></p>
+<h4 id="_7"></h4>
+<h4 id="42-project-wdl">4.2 创建 Project 并上传 WDL 代码</h4>
+<p>建议是公开，私有仓库后期需要使用 token</p>
+<p><img alt="" src="../_resources/boxcnUP79qt1nDISYOO0d5rwAhd.png" /></p>
+<p><img alt="" src="../_resources/boxcncyUHP5TiVgNvqZzwSnSrbh.png" /></p>
+<h3 id="miracle-cloudmc">五、Miracle Cloud（MC）工作流测试</h3>
+<p>在完成 3.2 本地测试成功后，在 Miracle Cloud 中正式大规模运行，还需要评估：</p>
+<ol>
+<li>WDL runtime 中计算资源配置</li>
+<li>测试工作流在云计算环境下的稳定性</li>
+</ol>
+<h4 id="51-gitlab-mc">**5.1 从 Gitlab 中将工作流导入到 MC 中</h4>
+<p>在 Miracle Cloud 中创建一个工作空间 Devoloper；</p>
+<p>进入 Workspace 工作流功能界面， 选择“导入工作流”功能：</p>
+<p>明确工作流在代码仓库中的 git address, Tag, Token(非公开代码仓库)，main path;</p>
+<p>填写对应信息点击“OK”</p>
+<p><img alt="" src="../_resources/boxcnht7shrOefiL8SAiHCD3PD6.png" /></p>
+<p><img alt="" src="../_resources/boxcn6HbYxP87aXMyKb35HkgmOd.png" /></p>
+<p><img alt="" src="../_resources/boxcn318gle0QnAvjsyZiBjspCg.png" /></p>
+<p>操作实例如下：</p>
+<p>Name : DenovoCNN
+Git address: <a href="http://git.miracle.ac.cn/zhaoqiangli/denovocnn_wdl.git">http://git.miracle.ac.cn/zhaoqiangli/denovocnn_wdl.git</a></p>
+<p>Tag: main</p>
+<p>Main path: pipes/WDL/workflows/DeNovoCNN.wdl</p>
+<p><img alt="" src="../_resources/boxcnSDctbrNKIAazPofTbomVOe.png" /></p>
+<p><img alt="" src="../_resources/boxcnmtDPTB3B03lhgUO1E3EB9g.png" /></p>
+<h4 id="52-data-model-preperation">** 5.2  Data Model Preperation</h4>
+<p>整理数据必要的输入文件，上传到工作空间对应的存储空间。</p>
+<p><img alt="" src="../_resources/boxcn4wP8g7w2hftA0xqKaW9Ebf.png" /></p>
+<p><img alt="" src="../_resources/boxcnjxAqdqo9ZLN0U068y2dJjh.png" /></p>
+<p>明确需要上传的数据文件：</p>
+<p>参考 Input.json 文件，输入文件如下：</p>
+<pre><code>&quot;DeNovoCNN.CHILD_BAM&quot;: &quot;/data/lzq/Software/DenovoCNN/TestData/chr22/HCC-004-1.recaled.chr22.bam&quot;,
+  &quot;DeNovoCNN.CHILD_BAM_INDEX&quot;: &quot;/data/lzq/Software/DenovoCNN/TestData/chr22/HCC-004-1.recaled.chr22.bam.bai&quot;,
+  &quot;DeNovoCNN.CHILD_VCF&quot;: &quot;/data/lzq/Software/DenovoCNN/TestData/chr22/HCC-004-1.chr22.recode.vcf&quot;,
+  &quot;DeNovoCNN.FATHER_VCF&quot;: &quot;/data/lzq/Software/DenovoCNN/TestData/chr22/HCC-004-2.chr22.recode.vcf&quot;,
+  &quot;DeNovoCNN.FATHER_BAM_INDEX&quot;: &quot;/data/lzq/Software/DenovoCNN/TestData/chr22/HCC-004-2.recaled.chr22.bam.bai&quot;,
+  &quot;DeNovoCNN.FATHER_BAM&quot;: &quot;/data/lzq/Software/DenovoCNN/TestData/chr22/HCC-004-2.recaled.chr22.bam&quot;,
+  &quot;DeNovoCNN.MOTHER_VCF&quot;: &quot;/data/lzq/Software/DenovoCNN/TestData/chr22/HCC-004-3.chr22.recode.vcf&quot;,
+  &quot;DeNovoCNN.MOTHER_BAM_INDEX&quot;: &quot;/data/lzq/Software/DenovoCNN/TestData/chr22/HCC-004-3.recaled.chr22.bam.bai&quot;,
+  &quot;DeNovoCNN.MOTHER_BAM&quot;: &quot;/data/lzq/Software/DenovoCNN/TestData/chr22/HCC-004-3.recaled.chr22.bam&quot;,
+  &quot;DeNovoCNN.REFERENCE_GENOME&quot;: &quot;/data/lzq/Reference/GZNL/broad_reference/v0/Homo_sapiens_assembly38.fasta&quot;
+</code></pre>
+<p>三个样本， 每个样本的 bam,bam.bai, vcf 以及参考基因组 fasta 文件。</p>
+<h5 id="521-data-upload">**5.2.1 Data upload</h5>
+<p>在工作空间中创建 Notebook，获取工作空间数据存储空间配置参数和数据上传方式。</p>
+<p>通过 miraclecloud.cli 工具将数据从虚拟机上传到工作空间对应的是存储空间中。</p>
+<p><strong>数据上传的两种方式</strong>：</p>
+<p>a) 点击上图中上传文件，通过 http 协议上传；</p>
+<p>b) 通过 Miracle Cloud 数据上传工具 CLI（miraclecloud.cli），从本地虚拟机上传；</p>
+<p>查看帮助文档：<a href="https://cloud.miracle.ac.cn/docs/6653/126131">https://cloud.miracle.ac.cn/docs/6653/126131</a></p>
+<p><strong>查看数据列表</strong>：</p>
+<p>数据-文件列表</p>
+<p><img alt="" src="../_resources/boxcnF8l0PZWfEeai9WdAt2kdLf.png" /></p>
+<p><img alt="" src="../_resources/boxcnWhHNowYZ5FDquTXbkRaDQd.png" /></p>
+<pre><code class="language-bash">export JUPYTERHUB_SERVER_NAME=wc*****************0g
+export MIRACLE_ENDPOINT=https://*****
+export MIRACLE_ACCESS_KEY=AKLT**************************************NiNjM
+export MIRACLE_SECRET_KEY=WVdV**************************************************5XWQ==
+</code></pre>
+<p>注意：http 改为 https</p>
+<pre><code class="language-bash">## 主账号AK/SK
+export JUPYTERHUB_SERVER_NAME=wcggjkmleig4cter9da80
+export MIRACLE_ENDPOINT=https://bio-top.miracle.ac.cn
+export MIRACLE_ACCESS_KEY=AKLTOWMzMzA1NzA4MDBmNDhhZDhiMWRlZTMxYzRhN2QxNGQ
+export MIRACLE_SECRET_KEY=TW1NMk5EUmhOMk5rTm1NME5ETmpORGxoWm1KbFl6Z3pNbVJoT1dJeE9HSQ==
+</code></pre>
+<p>使用 CLI 命令行工具：miraclecloud.cli 上传数据</p>
+<pre><code class="language-bash">$ miraclecloud.cli upload  02_TestData/ /   -r
+</code></pre>
+<p><img alt="" src="../_resources/boxcnkShwiKf2uuujFKjddEJIkh.png" /></p>
+<p>数据上传完成后可以在 Workspace 中查看</p>
+<p><img alt="" src="../_resources/boxcnljBJTAl4OANx9amXsp65vx.png" /></p>
+<h5 id="522-data-model">**5.2.2 制作 Data Model</h5>
+<ol>
+<li><strong>获取数据 S3 链接</strong></li>
+</ol>
+<p>两种方式：</p>
+<p>(1) 少量数据可以直接网页复制；</p>
+<p>(2) 大量数据使用 miraclecloud.cli 工具</p>
+<p>在 Workspace 中创建 notebooks，在 notebooks 命令行中利用 CLI 获取数据 S3 链接。</p>
+<pre><code class="language-shell"># reference S3 path
+for F in `miraclecloud.cli list / | grep Data`;
+do 
+    echo &quot;s3://bioos-&quot;${JUPYTERHUB_SERVER_NAME}&quot;/&quot;$F;
+done
+</code></pre>
+<pre><code>s3://bioos-wcggjkmleig4cter9da80/02_TestData/HCC-004-1.chr22.recode.vcf
+s3://bioos-wcggjkmleig4cter9da80/02_TestData/HCC-004-1.recaled.chr22.bam
+s3://bioos-wcggjkmleig4cter9da80/02_TestData/HCC-004-1.recaled.chr22.bam.bai
+
+s3://bioos-wcggjkmleig4cter9da80/02_TestData/HCC-004-2.chr22.recode.vcf
+s3://bioos-wcggjkmleig4cter9da80/02_TestData/HCC-004-2.recaled.chr22.bam
+s3://bioos-wcggjkmleig4cter9da80/02_TestData/HCC-004-2.recaled.chr22.bam.bai
+
+s3://bioos-wcggjkmleig4cter9da80/02_TestData/HCC-004-3.chr22.recode.vcf
+s3://bioos-wcggjkmleig4cter9da80/02_TestData/HCC-004-3.recaled.chr22.bam
+s3://bioos-wcggjkmleig4cter9da80/02_TestData/HCC-004-3.recaled.chr22.bam.bai
+
+s3://bioos-wcggjkmleig4cter9da80/03_RefData/Homo_sapiens_assembly38.fasta
+s3://bioos-wcggjkmleig4cter9da80/03_RefData/Homo_sapiens_assembly38.fasta.fai
+</code></pre>
+<ol>
+<li>下载<strong>实体数据模型</strong>模板</li>
+</ol>
+<p>点击 数据 --&gt; 实体数据模型(+) --&gt; 下载 csv 文件模板</p>
+<p><img alt="" src="../_resources/boxcn6xBpVa6DIV6o3tXwvKBwTf.png" /></p>
+<ol>
+<li>填写 Data Model</li>
+</ol>
+<p>(1) 第一列列名命名命名规则，“_id” （例如：Sample_id）;Sample 会作为后期“<strong>实体数据模型</strong>”显示</p>
+<p>(2) csv 表格中每一列的数据类型对应 WDL 变量类型</p>
+<p>注意 csv 内容格式和 WDL 的格式兼容：</p>
+<p>例如：gatk 中的 RG 参数： '@RG\tID:SRR11905267\tSM:\tPL:HiSeq X Ten'</p>
+<ol>
+<li>Workspace 数据模型</li>
+</ol>
+<h4 id="53">5.3 工作流运行</h4>
+<p>出于培训时间，网络等条件限制，实战课程跳过 WDL 工作流上传代码仓库，跳过工作流从代码仓库导入 Workspace 和数据实体表制作后；使用从 Digger 仓库中复制 Workspace，进入工作空间<strong>Developer-copy</strong>，进入工作流，上传一下配置文件进行分析。
+JSON文件如下（点击下载）：
+<a href="static/inputs.json" target="_blank"> inputs.json</a></p>
+<ol>
+<li>配置计算环境</li>
+</ol>
+<p>在环境管理中，工作流中关联集群</p>
+<p><img alt="" src="../_resources/L6YVbhhDmo3i86x464bcGBu7nvf.png" /></p>
+<p>选择关联集群 mcTest:</p>
+<p><img alt="" src="../_resources/QxRcbG3zDoaC8Lxt7JRcWTWHnug.png" /></p>
+<p>关联成功显示：</p>
+<p><img alt="" src="../_resources/DP8dbtSEmofPzdxO2chckyVun6I.png" /></p>
+<ol>
+<li>进入工作流选择实体</li>
+<li>进入 Workspace，从左边导航栏中进入到<strong>DenovoCNN</strong>工作流中</li>
+<li>在运行选项中选择<strong>“以数据模型作为输入”，</strong>并选择实体名称（及实体模型表）</li>
+</ol>
+<p><img alt="" src="../_resources/U70AbzIPxo2vw8xFlsYcJ9sLnvh.png" /></p>
+<p><img alt="" src="../_resources/PTI5bFTHwoBTC9xnLifc8rsNnjb.png" /></p>
+<ol>
+<li>配置参数</li>
+</ol>
+<p>在<strong>运行参数</strong>中填写<strong>输入参数</strong>和<strong>输出参数</strong></p>
+<p><img alt="" src="../_resources/LwSHbvf1XoeKECxyOUIcvDwzn8c.png" /></p>
+<p>本次实战中，采用上传 Json 的方式配置参数：</p>
+<p><img alt="" src="../_resources/Y9Fobk0RNonpWPxbGmtcmHvenBf.png" /></p>
+<p>参数配置两种方式：</p>
+<p>(1) 网页填写；</p>
+<p>(2) 通过 Json 文件导入</p>
+<p>配置参数：</p>
+<p>"this." ：特指 “<strong>实体数据模型</strong>”这张表格中的是列；</p>
+<p>"workspace.": 特指 “<strong>Workspace 数据模型</strong>”中的键值对；</p>
+<ol>
+<li>运行分析</li>
+</ol>
+<p>点击“开始分析”，启动分析</p>
+<p><img alt="" src="../_resources/UZEBbqSl4oCtmHxC8eJcM8HGnml.png" /></p>
+<h4 id="54">5.4 工作流运行结果查看</h4>
+<ol>
+<li>运行状态查看</li>
+</ol>
+<p>分析历史中可以查看当前 Workspace 中所有工作流的运行历史状态，同时能够针对同一个工作流能够查看不同级别不同粒度的运行历史状态</p>
+<ul>
+<li>投递历史记录查看：能够展示历次分析/投递/提交的历史，其中一次投递/提交可以包含一条或多条工作流的执行</li>
+<li>工作流级别运行记录查看：能够展示一次投递中所有工作流的运行状态，其中一条工作流可以由一个或多个 task 组成</li>
+<li>task 级别运行记录查看：能够展示一次工作流运行中所有的 task 运行状态</li>
+</ul>
+<p>投递历史记录：</p>
+<p><img alt="" src="../_resources/C4DYbA5AWoxSH9xHnAZcUIfMnah.png" /></p>
+<p>工作流级别运行记录：</p>
+<p><img alt="" src="../_resources/MMm7bXwjFobAKxx0DEjchrQzn4b.png" /></p>
+<p>task 级别运行记录：</p>
+<p><img alt="" src="../_resources/XNumbSHkromkKvxqJ89c8UuQnyb.png" /></p>
+<ol>
+<li>工作流运行状态查看</li>
+</ol>
+<p>从分析历史进入，到 task 运行状态查看</p>
+<p><img alt="" src="../_resources/FrsYbEZTLozuZdxMZkGcrNSSnhf.png" /></p>
+<p>目前运行状态有 6 种；</p>
+<p>启动中：创建 taskmaster, input filer 等都属于启动中状态；</p>
+<p>运行中：当前无可用调用资源，task 出于排队中；</p>
+<p>运行成功：当前 task 运行成功，已完成；</p>
+<p>运行失败：当前 task 运行失败；</p>
+<p>终止中：当前 task 处于终止状态。</p>
+<ol>
+<li>task 运行资源监控</li>
+</ol>
+<p>资源监控可以试试查看 task 计算资源实时试用情况，用于评估后续大规模运行 task 级别 runtime 内部计算资源合理配置。</p>
+<p>在 task 级别运行记录中有显示 task 级别运行资源监控：</p>
+<p><img alt="" src="../_resources/BOhAbmKEHoVfTyx1QKNcxwRsnKg.png" /></p>
+<p>资源动态监控：                                                     实时日志：</p>
+<p><img alt="" src="../_resources/ENpwbLXyZoaKV4xlm6qcOpkLnpd.png" /></p>
+<p><img alt="" src="../_resources/Lqh6bQQpSoQuIUxVPcEcPvJxnEd.png" /></p>
+<ol>
+<li>结果文件查看</li>
+</ol>
+<p>运行结果文件存放在<strong> 数据-数据文件管理-analysis </strong>文件夹中</p>
+<p>通过对应工作流运行历史的<strong>投递 ID</strong>，可以在 <strong>analysis</strong>  中找到对应的结果文件，目录层次遵循 Cromwell 规范。</p>
+<p><img alt="" src="../_resources/R5dwbsWqwoDqL9xWs3xcCczHnbf.png" /></p>
+<h3 id="_8">六、运行日志</h3>
+<h4 id="61-miracle-cloud">6.1 Miracle Cloud 工作流运行详情</h4>
+<ol>
+<li>总体架构</li>
+</ol>
+<p><img alt="" src="../_resources/boxcn9HLnxWOgN1O71RmrFs2hob.png" /></p>
+<p>PVC：<strong>PersistentVolumeClaim（持久卷申领）</strong>表达的是用户对存储的请求；</p>
+<p>ETag: cache version identifier.</p>
+<ol>
+<li>运行日志</li>
+</ol>
+<p>两大类日志：</p>
+<ol>
+<li>工作流级别运行日志：Workflow log/error 从 wes2cromwell 开始，</li>
+<li>task 级别运行日志（Pod）：log/stderr/stdout 从 taskmaster 开始</li>
+</ol>
+<p>pending 从 taskmaster 开始</p>
+<p><img alt="" src="../_resources/boxcno88kB3wuCA8ME62ymDoZtb.png" /></p>
+<p><img alt="" src="../_resources/boxcnzAPC9OxlK96Xm3dvaRVuch.png" /></p>
+<h4 id="62-miracle-cloud">6.2 Miracle Cloud 工作流运行详情</h4>
+<h5 id="621-task">6.2.1 task 级别运行详情:</h5>
+<p>两种查看方式：</p>
+<ol>
+<li>在线查看方式</li>
+<li>文件下载：cromwell 结果文件展示</li>
+</ol>
+<p><img alt="" src="../_resources/boxcnnL1rtHzCTAJu0mWmsnIfjh.png" /></p>
+<p><img alt="" src="../_resources/boxcnlxzO72Jf4aX4PY4sOuKkdc.png" /></p>
+<p><img alt="" src="../_resources/boxcnUIuYreMN2APcKb834G1rzp.png" /></p>
+<p><img alt="" src="../_resources/boxcnCVvnqqbkLIQ9q24hlwcwng.png" /></p>
+<p>task 执行过程，共 6 步：</p>
+<ol>
+<li>挂载存储到计算环境</li>
+<li>开始下载输入文件</li>
+<li>创建执行 pod,运行任务</li>
+<li>上传运行结果：从 K8s 计算环境上传到 Workspace 对象存储桶</li>
+<li>数据上传完成后删除运行环境</li>
+</ol>
+<pre><code class="language-bash">03/27/2023 14:07:08 INFO: Starting taskmaster
+## 挂载存储到计算环境
+03/27/2023 14:07:08 INFO: Creating PVC: 'task-20486aa7-pvc'...
+### 开始下载输入文件
+03/27/2023 14:07:08 INFO: Creating job 'task-20486aa7-inputs-filer'...
+03/27/2023 14:08:38 INFO: job 'task-20486aa7-inputs-filer' logs:
+03/27/2023 14:08:38 INFO: pod task-20486aa7-inputs-filer-cxz22 log:
+03/27/2023 14:07:31 INFO: Starting inputs filer...
+03/27/2023 14:07:31 INFO: Processing file: /cromwell-executions/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/inputs/bioos-wcggjkmleig4cter9da80/02_TestData/HCC-004-3.recaled.chr22.bam
+03/27/2023 14:07:31 INFO: TOSTransput downloading Type.File s3://bioos-wcggjkmleig4cter9da80/02_TestData/HCC-004-3.recaled.chr22.bam
+03/27/2023 14:07:31 INFO: Downloading tos object: &quot;bioos-wcggjkmleig4cter9da80/02_TestData/HCC-004-3.recaled.chr22.bam&quot; Target: /cromwell-executions/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/inputs/bioos-wcggjkmleig4cter9da80/02_TestData/HCC-004-3.recaled.chr22.bam
+03/27/2023 14:07:37 INFO: Processed file: /cromwell-executions/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/inputs/bioos-wcggjkmleig4cter9da80/02_TestData/HCC-004-3.recaled.chr22.bam
+03/27/2023 14:07:37 INFO: Processing file: /cromwell-executions/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/inputs/bioos-wcggjkmleig4cter9da80/02_TestData/HCC-004-2.chr22.recode.vcf
+03/27/2023 14:07:37 INFO: TOSTransput downloading Type.File s3://bioos-wcggjkmleig4cter9da80/02_TestData/HCC-004-2.chr22.recode.vcf
+03/27/2023 14:07:37 INFO: Downloading tos object: &quot;bioos-wcggjkmleig4cter9da80/02_TestData/HCC-004-2.chr22.recode.vcf&quot; Target: /cromwell-executions/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/inputs/bioos-wcggjkmleig4cter9da80/02_TestData/HCC-004-2.chr22.recode.vcf
+03/27/2023 14:07:37 INFO: Processed file: /cromwell-executions/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/inputs/bioos-wcggjkmleig4cter9da80/02_TestData/HCC-004-2.chr22.recode.vcf
+03/27/2023 14:07:37 INFO: Processing file: /cromwell-executions/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/inputs/bioos-wcggjkmleig4cter9da80/02_TestData/HCC-004-3.recaled.chr22.bam.bai
+03/27/2023 14:07:37 INFO: TOSTransput downloading Type.File s3://bioos-wcggjkmleig4cter9da80/02_TestData/HCC-004-3.recaled.chr22.bam.bai
+03/27/2023 14:07:37 INFO: Downloading tos object: &quot;bioos-wcggjkmleig4cter9da80/02_TestData/HCC-004-3.recaled.chr22.bam.bai&quot; Target: /cromwell-executions/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/inputs/bioos-wcggjkmleig4cter9da80/02_TestData/HCC-004-3.recaled.chr22.bam.bai
+03/27/2023 14:07:37 INFO: Processed file: /cromwell-executions/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/inputs/bioos-wcggjkmleig4cter9da80/02_TestData/HCC-004-3.recaled.chr22.bam.bai
+03/27/2023 14:07:37 INFO: Processing file: /cromwell-executions/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/inputs/bioos-wcggjkmleig4cter9da80/02_TestData/HCC-004-2.recaled.chr22.bam.bai
+03/27/2023 14:07:37 INFO: TOSTransput downloading Type.File s3://bioos-wcggjkmleig4cter9da80/02_TestData/HCC-004-2.recaled.chr22.bam.bai
+03/27/2023 14:07:37 INFO: Downloading tos object: &quot;bioos-wcggjkmleig4cter9da80/02_TestData/HCC-004-2.recaled.chr22.bam.bai&quot; Target: /cromwell-executions/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/inputs/bioos-wcggjkmleig4cter9da80/02_TestData/HCC-004-2.recaled.chr22.bam.bai
+03/27/2023 14:07:37 INFO: Processed file: /cromwell-executions/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/inputs/bioos-wcggjkmleig4cter9da80/02_TestData/HCC-004-2.recaled.chr22.bam.bai
+03/27/2023 14:07:37 INFO: Processing file: /cromwell-executions/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/inputs/bioos-wcggjkmleig4cter9da80/03_RefData/Homo_sapiens_assembly38.fasta.fai
+03/27/2023 14:07:37 INFO: TOSTransput downloading Type.File s3://bioos-wcggjkmleig4cter9da80/03_RefData/Homo_sapiens_assembly38.fasta.fai
+03/27/2023 14:07:37 INFO: Downloading tos object: &quot;bioos-wcggjkmleig4cter9da80/03_RefData/Homo_sapiens_assembly38.fasta.fai&quot; Target: /cromwell-executions/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/inputs/bioos-wcggjkmleig4cter9da80/03_RefData/Homo_sapiens_assembly38.fasta.fai
+03/27/2023 14:07:37 INFO: Processed file: /cromwell-executions/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/inputs/bioos-wcggjkmleig4cter9da80/03_RefData/Homo_sapiens_assembly38.fasta.fai
+03/27/2023 14:07:37 INFO: Processing file: /cromwell-executions/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/inputs/bioos-wcggjkmleig4cter9da80/02_TestData/HCC-004-3.chr22.recode.vcf
+03/27/2023 14:07:37 INFO: TOSTransput downloading Type.File s3://bioos-wcggjkmleig4cter9da80/02_TestData/HCC-004-3.chr22.recode.vcf
+03/27/2023 14:07:37 INFO: Downloading tos object: &quot;bioos-wcggjkmleig4cter9da80/02_TestData/HCC-004-3.chr22.recode.vcf&quot; Target: /cromwell-executions/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/inputs/bioos-wcggjkmleig4cter9da80/02_TestData/HCC-004-3.chr22.recode.vcf
+03/27/2023 14:07:37 INFO: Processed file: /cromwell-executions/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/inputs/bioos-wcggjkmleig4cter9da80/02_TestData/HCC-004-3.chr22.recode.vcf
+03/27/2023 14:07:37 INFO: Processing file: /cromwell-executions/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/inputs/bioos-wcggjkmleig4cter9da80/02_TestData/HCC-004-1.chr22.recode.vcf
+03/27/2023 14:07:37 INFO: TOSTransput downloading Type.File s3://bioos-wcggjkmleig4cter9da80/02_TestData/HCC-004-1.chr22.recode.vcf
+03/27/2023 14:07:37 INFO: Downloading tos object: &quot;bioos-wcggjkmleig4cter9da80/02_TestData/HCC-004-1.chr22.recode.vcf&quot; Target: /cromwell-executions/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/inputs/bioos-wcggjkmleig4cter9da80/02_TestData/HCC-004-1.chr22.recode.vcf
+03/27/2023 14:07:37 INFO: Processed file: /cromwell-executions/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/inputs/bioos-wcggjkmleig4cter9da80/02_TestData/HCC-004-1.chr22.recode.vcf
+03/27/2023 14:07:37 INFO: Processing file: /cromwell-executions/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/inputs/bioos-wcggjkmleig4cter9da80/02_TestData/HCC-004-1.recaled.chr22.bam.bai
+03/27/2023 14:07:37 INFO: TOSTransput downloading Type.File s3://bioos-wcggjkmleig4cter9da80/02_TestData/HCC-004-1.recaled.chr22.bam.bai
+03/27/2023 14:07:37 INFO: Downloading tos object: &quot;bioos-wcggjkmleig4cter9da80/02_TestData/HCC-004-1.recaled.chr22.bam.bai&quot; Target: /cromwell-executions/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/inputs/bioos-wcggjkmleig4cter9da80/02_TestData/HCC-004-1.recaled.chr22.bam.bai
+03/27/2023 14:07:37 INFO: Processed file: /cromwell-executions/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/inputs/bioos-wcggjkmleig4cter9da80/02_TestData/HCC-004-1.recaled.chr22.bam.bai
+03/27/2023 14:07:37 INFO: Processing file: /cromwell-executions/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/inputs/bioos-wcggjkmleig4cter9da80/03_RefData/Homo_sapiens_assembly38.fasta
+03/27/2023 14:07:37 INFO: TOSTransput downloading Type.File s3://bioos-wcggjkmleig4cter9da80/03_RefData/Homo_sapiens_assembly38.fasta
+03/27/2023 14:07:37 INFO: Downloading tos object: &quot;bioos-wcggjkmleig4cter9da80/03_RefData/Homo_sapiens_assembly38.fasta&quot; Target: /cromwell-executions/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/inputs/bioos-wcggjkmleig4cter9da80/03_RefData/Homo_sapiens_assembly38.fasta
+03/27/2023 14:08:11 INFO: Processed file: /cromwell-executions/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/inputs/bioos-wcggjkmleig4cter9da80/03_RefData/Homo_sapiens_assembly38.fasta
+03/27/2023 14:08:11 INFO: Processing file: /cromwell-executions/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/inputs/bioos-wcggjkmleig4cter9da80/02_TestData/HCC-004-2.recaled.chr22.bam
+03/27/2023 14:08:11 INFO: TOSTransput downloading Type.File s3://bioos-wcggjkmleig4cter9da80/02_TestData/HCC-004-2.recaled.chr22.bam
+03/27/2023 14:08:11 INFO: Downloading tos object: &quot;bioos-wcggjkmleig4cter9da80/02_TestData/HCC-004-2.recaled.chr22.bam&quot; Target: /cromwell-executions/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/inputs/bioos-wcggjkmleig4cter9da80/02_TestData/HCC-004-2.recaled.chr22.bam
+03/27/2023 14:08:18 INFO: Processed file: /cromwell-executions/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/inputs/bioos-wcggjkmleig4cter9da80/02_TestData/HCC-004-2.recaled.chr22.bam
+03/27/2023 14:08:18 INFO: Processing file: /cromwell-executions/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/inputs/bioos-wcggjkmleig4cter9da80/02_TestData/HCC-004-1.recaled.chr22.bam
+03/27/2023 14:08:18 INFO: TOSTransput downloading Type.File s3://bioos-wcggjkmleig4cter9da80/02_TestData/HCC-004-1.recaled.chr22.bam
+03/27/2023 14:08:18 INFO: Downloading tos object: &quot;bioos-wcggjkmleig4cter9da80/02_TestData/HCC-004-1.recaled.chr22.bam&quot; Target: /cromwell-executions/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/inputs/bioos-wcggjkmleig4cter9da80/02_TestData/HCC-004-1.recaled.chr22.bam
+03/27/2023 14:08:26 INFO: Processed file: /cromwell-executions/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/inputs/bioos-wcggjkmleig4cter9da80/02_TestData/HCC-004-1.recaled.chr22.bam
+03/27/2023 14:08:26 INFO: Processing file: /cromwell-executions/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/execution/script
+03/27/2023 14:08:26 INFO: TOSTransput downloading Type.File s3://bioos-wcggjkmleig4cter9da80/analysis/scggq5vdeig40ooi8425g/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/execution/script
+03/27/2023 14:08:26 INFO: Downloading tos object: &quot;bioos-wcggjkmleig4cter9da80/analysis/scggq5vdeig40ooi8425g/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/execution/script&quot; Target: /cromwell-executions/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/execution/script
+03/27/2023 14:08:26 INFO: Processed file: /cromwell-executions/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/execution/script
+
+### 创建执行pod,运行任务
+03/27/2023 14:08:38 INFO: Creating job 'task-20486aa7-ex-00'...
+03/27/2023 14:25:40 INFO: job 'task-20486aa7-ex-00' logs:
+03/27/2023 14:25:40 INFO: pod task-20486aa7-ex-00-h6rkr log:
+
+### 上传运行结果：从K8s计算环境上传到Workspace对象存储桶
+03/27/2023 14:25:40 INFO: Finished running executors, Complete
+03/27/2023 14:25:40 INFO: Creating job 'task-20486aa7-outputs-filer'...
+03/27/2023 14:26:10 INFO: job 'task-20486aa7-outputs-filer' logs:
+03/27/2023 14:26:10 INFO: pod task-20486aa7-outputs-filer-crgjq log:
+03/27/2023 14:25:41 INFO: Starting outputs filer...
+03/27/2023 14:25:41 INFO: Processing file: /cromwell-executions/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/execution/rc
+03/27/2023 14:25:41 INFO: TOSTransput uploading Type.File s3://bioos-wcggjkmleig4cter9da80/analysis/scggq5vdeig40ooi8425g/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/execution/rc
+03/27/2023 14:25:41 INFO: Uploading tos object: &quot;/cromwell-executions/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/execution/rc&quot; Target: bioos-wcggjkmleig4cter9da80/analysis/scggq5vdeig40ooi8425g/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/execution/rc
+03/27/2023 14:25:41 INFO: Processed file: /cromwell-executions/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/execution/rc
+03/27/2023 14:25:41 INFO: Processing file: /cromwell-executions/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/execution/stdout
+03/27/2023 14:25:41 INFO: TOSTransput uploading Type.File s3://bioos-wcggjkmleig4cter9da80/analysis/scggq5vdeig40ooi8425g/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/execution/stdout
+03/27/2023 14:25:41 INFO: Uploading tos object: &quot;/cromwell-executions/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/execution/stdout&quot; Target: bioos-wcggjkmleig4cter9da80/analysis/scggq5vdeig40ooi8425g/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/execution/stdout
+03/27/2023 14:25:41 INFO: Processed file: /cromwell-executions/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/execution/stdout
+03/27/2023 14:25:41 INFO: Processing file: /cromwell-executions/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/execution/stderr
+03/27/2023 14:25:41 INFO: TOSTransput uploading Type.File s3://bioos-wcggjkmleig4cter9da80/analysis/scggq5vdeig40ooi8425g/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/execution/stderr
+03/27/2023 14:25:41 INFO: Uploading tos object: &quot;/cromwell-executions/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/execution/stderr&quot; Target: bioos-wcggjkmleig4cter9da80/analysis/scggq5vdeig40ooi8425g/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/execution/stderr
+03/27/2023 14:25:41 INFO: Processed file: /cromwell-executions/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/execution/stderr
+03/27/2023 14:25:41 INFO: Processing file: /cromwell-executions/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/execution/log
+03/27/2023 14:25:41 INFO: TOSTransput uploading Type.File s3://bioos-wcggjkmleig4cter9da80/analysis/scggq5vdeig40ooi8425g/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/execution/log
+03/27/2023 14:25:41 INFO: Uploading tos object: &quot;/cromwell-executions/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/execution/log&quot; Target: bioos-wcggjkmleig4cter9da80/analysis/scggq5vdeig40ooi8425g/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/execution/log
+03/27/2023 14:25:41 INFO: Processed file: /cromwell-executions/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/execution/log
+03/27/2023 14:25:41 INFO: Processing file: /cromwell-executions/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/execution/script
+03/27/2023 14:25:41 INFO: TOSTransput uploading Type.File s3://bioos-wcggjkmleig4cter9da80/analysis/scggq5vdeig40ooi8425g/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/execution/script
+03/27/2023 14:25:41 INFO: Uploading tos object: &quot;/cromwell-executions/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/execution/script&quot; Target: bioos-wcggjkmleig4cter9da80/analysis/scggq5vdeig40ooi8425g/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/execution/script
+03/27/2023 14:25:41 INFO: Processed file: /cromwell-executions/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/execution/script
+03/27/2023 14:25:41 INFO: Processing file: /cromwell-executions/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/execution/family_predictionsWholeGenome.csv
+03/27/2023 14:25:41 INFO: TOSTransput uploading Type.File s3://bioos-wcggjkmleig4cter9da80/analysis/scggq5vdeig40ooi8425g/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/execution/family_predictionsWholeGenome.csv
+03/27/2023 14:25:41 INFO: Uploading tos object: &quot;/cromwell-executions/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/execution/family_predictionsWholeGenome.csv&quot; Target: bioos-wcggjkmleig4cter9da80/analysis/scggq5vdeig40ooi8425g/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/execution/family_predictionsWholeGenome.csv
+03/27/2023 14:25:41 INFO: Processed file: /cromwell-executions/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/execution/family_predictionsWholeGenome.csv
+### 数据上传完成后删除运行环境
+03/27/2023 14:26:10 INFO: Removing job: 'task-20486aa7-inputs-filer'...
+03/27/2023 14:26:10 INFO: Removing job: 'task-20486aa7-ex-00'...
+03/27/2023 14:26:10 INFO: Removing job: 'task-20486aa7-outputs-filer'...
+03/27/2023 14:26:10 INFO: Removing PVC: 'task-20486aa7-pvc'...
+</code></pre>
+<pre><code class="language-bash">03/27/2023 14:07:08 INFO: Starting taskmaster
+## 挂载存储到计算环境
+03/27/2023 14:07:08 INFO: Creating PVC: 'task-20486aa7-pvc'...
+### 开始下载输入文件
+03/27/2023 14:07:08 INFO: Creating job 'task-20486aa7-inputs-filer'...
+03/27/2023 14:08:38 INFO: job 'task-20486aa7-inputs-filer' logs:
+03/27/2023 14:08:38 INFO: pod task-20486aa7-inputs-filer-cxz22 log:
+03/27/2023 14:07:31 INFO: Starting inputs filer...
+.....
+
+### 创建执行pod,运行任务
+03/27/2023 14:08:38 INFO: Creating job 'task-20486aa7-ex-00'...
+03/27/2023 14:25:40 INFO: job 'task-20486aa7-ex-00' logs:
+03/27/2023 14:25:40 INFO: pod task-20486aa7-ex-00-h6rkr log:
+...
+
+### 上传运行结果：从K8s计算环境上传到Workspace对象存储桶
+03/27/2023 14:25:40 INFO: Finished running executors, Complete
+03/27/2023 14:25:40 INFO: Creating job 'task-20486aa7-outputs-filer'...
+....
+
+### 数据上传完成后删除运行环境
+03/27/2023 14:26:10 INFO: Removing job: 'task-20486aa7-inputs-filer'...
+03/27/2023 14:26:10 INFO: Removing job: 'task-20486aa7-ex-00'...
+03/27/2023 14:26:10 INFO: Removing job: 'task-20486aa7-outputs-filer'...
+03/27/2023 14:26:10 INFO: Removing PVC: 'task-20486aa7-pvc'...
+</code></pre>
+<h5 id="622-workflow">6.2.2 workflow 级别运行详情:</h5>
+<p>cromwell 工作流解析过程，总共 10 步：</p>
+<ol>
+<li>明确 WDL 的版本</li>
+<li>明确 cromwell backend TES</li>
+<li>判断 task 是否符合 callcache 的条件</li>
+<li>解析的 shell 脚本</li>
+<li>解析输出文件路径</li>
+<li>解析输入文件路径</li>
+<li>解析的 shell 脚本</li>
+<li>启动计算环境，task 运行情况</li>
+<li>{task 运行过程}</li>
+<li>工作流运行情况，写出结果</li>
+</ol>
+<pre><code># cromwell识别WDL的版本
+2023-03-27 14:06:55,947 INFO  - MaterializeWorkflowDescriptorActor [UUID(0f5a18ea)]: Parsing workflow as WDL 1.0
+# cromwell识别 backend TES协议
+2023-03-27 14:06:55,996 INFO  - MaterializeWorkflowDescriptorActor [UUID(0f5a18ea)]: Call-to-Backend assignments: DeNovoCNN.denovoCNN -&gt; TES
+2023-03-27 14:06:58,034 INFO  - WorkflowExecutionActor-0f5a18ea-773e-478a-9653-cdc81ad83542 [UUID(0f5a18ea)]: Starting DeNovoCNN.denovoCNN
+### 判断task是否符合callcache的条件
+2023-03-27 14:07:05,683 INFO  - 0f5a18ea-773e-478a-9653-cdc81ad83542-EngineJobExecutionActor-DeNovoCNN.denovoCNN:NA:1 [UUID(0f5a18ea)]: Could not copy a suitable cache hit for 0f5a18ea:DeNovoCNN.denovoCNN:-1:1. No copy attempts were made.
+2023-03-27 14:07:05,714 INFO  - TesAsyncBackendJobExecutionActor 
+### 解析的shell脚本
+[UUID(0f5a18ea)DeNovoCNN.denovoCNN:NA:1]: `set -ex
+
+ulimit -n 100000
+if [ -z &quot;$TMPDIR&quot; ]; 
+then
+        export TMPDIR=$(pwd)
+fi
+
+bash /app/apply_denovocnn.sh \
+        -w=./ \
+        --child-vcf=/cromwell-executions/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/inputs/bioos-wcggjkmleig4cter9da80/02_TestData/HCC-004-1.chr22.recode.vcf \
+        --father-vcf=/cromwell-executions/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/inputs/bioos-wcggjkmleig4cter9da80/02_TestData/HCC-004-2.chr22.recode.vcf \
+        --mother-vcf=/cromwell-executions/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/inputs/bioos-wcggjkmleig4cter9da80/02_TestData/HCC-004-3.chr22.recode.vcf \
+        --child-bam=/cromwell-executions/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/inputs/bioos-wcggjkmleig4cter9da80/02_TestData/HCC-004-1.recaled.chr22.bam \
+        --father-bam=/cromwell-executions/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/inputs/bioos-wcggjkmleig4cter9da80/02_TestData/HCC-004-2.recaled.chr22.bam \
+        --mother-bam=/cromwell-executions/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/inputs/bioos-wcggjkmleig4cter9da80/02_TestData/HCC-004-3.recaled.chr22.bam \
+        --snp-model=/app/models/snp \
+        --in-model=/app/models/ins \
+        --del-model=/app/models/del \
+        --genome=/cromwell-executions/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/inputs/bioos-wcggjkmleig4cter9da80/03_RefData/Homo_sapiens_assembly38.fasta \
+        --output=family_predictionsWholeGenome.csv`
+### 解析输出文件路径
+2023-03-27 14:07:05,715 INFO  - TesAsyncBackendJobExecutionActor [UUID(0f5a18ea)DeNovoCNN.denovoCNN:NA:1]: Calculated TES outputs (found 6): 
+Output(Some(rc),Some(DeNovoCNN.denovoCNN.rc),Some(s3://bioos-wcggjkmleig4cter9da80/analysis/scggq5vdeig40ooi8425g/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/execution/rc),/cromwell-executions/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/execution/rc,Some(FILE))
+Output(Some(stdout),Some(DeNovoCNN.denovoCNN.stdout),Some(s3://bioos-wcggjkmleig4cter9da80/analysis/scggq5vdeig40ooi8425g/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/execution/stdout),/cromwell-executions/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/execution/stdout,Some(FILE))
+Output(Some(stderr),Some(DeNovoCNN.denovoCNN.stderr),Some(s3://bioos-wcggjkmleig4cter9da80/analysis/scggq5vdeig40ooi8425g/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/execution/stderr),/cromwell-executions/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/execution/stderr,Some(FILE))
+Output(Some(log),Some(DeNovoCNN.denovoCNN.log),Some(s3://bioos-wcggjkmleig4cter9da80/analysis/scggq5vdeig40ooi8425g/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/execution/log),/cromwell-executions/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/execution/log,Some(FILE))
+Output(Some(commandScript),Some(DeNovoCNN.denovoCNN.commandScript),Some(s3://bioos-wcggjkmleig4cter9da80/analysis/scggq5vdeig40ooi8425g/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/execution/script),/cromwell-executions/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/execution/script,Some(FILE))
+Output(Some(DeNovoCNN.denovoCNN.output.0),Some(DeNovoCNN.denovoCNN.output.0),Some(s3://bioos-wcggjkmleig4cter9da80/analysis/scggq5vdeig40ooi8425g/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/execution/family_predictionsWholeGenome.csv),/cromwell-executions/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/execution/family_predictionsWholeGenome.csv,Some(FILE))
+### cromwell 解析输入文件路径
+2023-03-27 14:07:05,720 INFO  - TesAsyncBackendJobExecutionActor [UUID(0f5a18ea)DeNovoCNN.denovoCNN:NA:1]: Calculated TES inputs (found 12): 
+Input(Some(DeNovoCNN.denovoCNN.MOTHER_BAM.0),Some(DeNovoCNN.DeNovoCNN.denovoCNN.MOTHER_BAM.0),Some(s3://bioos-wcggjkmleig4cter9da80/02_TestData/HCC-004-3.recaled.chr22.bam),/cromwell-executions/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/inputs/bioos-wcggjkmleig4cter9da80/02_TestData/HCC-004-3.recaled.chr22.bam,Some(FILE),None)
+Input(Some(DeNovoCNN.denovoCNN.FATHER_VCF.0),Some(DeNovoCNN.DeNovoCNN.denovoCNN.FATHER_VCF.0),Some(s3://bioos-wcggjkmleig4cter9da80/02_TestData/HCC-004-2.chr22.recode.vcf),/cromwell-executions/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/inputs/bioos-wcggjkmleig4cter9da80/02_TestData/HCC-004-2.chr22.recode.vcf,Some(FILE),None)
+Input(Some(DeNovoCNN.denovoCNN.MOTHER_BAM_INDEX.0),Some(DeNovoCNN.DeNovoCNN.denovoCNN.MOTHER_BAM_INDEX.0),Some(s3://bioos-wcggjkmleig4cter9da80/02_TestData/HCC-004-3.recaled.chr22.bam.bai),/cromwell-executions/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/inputs/bioos-wcggjkmleig4cter9da80/02_TestData/HCC-004-3.recaled.chr22.bam.bai,Some(FILE),None)
+Input(Some(DeNovoCNN.denovoCNN.FATHER_BAM_INDEX.0),Some(DeNovoCNN.DeNovoCNN.denovoCNN.FATHER_BAM_INDEX.0),Some(s3://bioos-wcggjkmleig4cter9da80/02_TestData/HCC-004-2.recaled.chr22.bam.bai),/cromwell-executions/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/inputs/bioos-wcggjkmleig4cter9da80/02_TestData/HCC-004-2.recaled.chr22.bam.bai,Some(FILE),None)
+Input(Some(DeNovoCNN.denovoCNN.REFERENCE_GENOME_INDEX.0),Some(DeNovoCNN.DeNovoCNN.denovoCNN.REFERENCE_GENOME_INDEX.0),Some(s3://bioos-wcggjkmleig4cter9da80/03_RefData/Homo_sapiens_assembly38.fasta.fai),/cromwell-executions/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/inputs/bioos-wcggjkmleig4cter9da80/03_RefData/Homo_sapiens_assembly38.fasta.fai,Some(FILE),None)
+Input(Some(DeNovoCNN.denovoCNN.MOTHER_VCF.0),Some(DeNovoCNN.DeNovoCNN.denovoCNN.MOTHER_VCF.0),Some(s3://bioos-wcggjkmleig4cter9da80/02_TestData/HCC-004-3.chr22.recode.vcf),/cromwell-executions/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/inputs/bioos-wcggjkmleig4cter9da80/02_TestData/HCC-004-3.chr22.recode.vcf,Some(FILE),None)
+Input(Some(DeNovoCNN.denovoCNN.CHILD_VCF.0),Some(DeNovoCNN.DeNovoCNN.denovoCNN.CHILD_VCF.0),Some(s3://bioos-wcggjkmleig4cter9da80/02_TestData/HCC-004-1.chr22.recode.vcf),/cromwell-executions/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/inputs/bioos-wcggjkmleig4cter9da80/02_TestData/HCC-004-1.chr22.recode.vcf,Some(FILE),None)
+Input(Some(DeNovoCNN.denovoCNN.CHILD_BAM_INDEX.0),Some(DeNovoCNN.DeNovoCNN.denovoCNN.CHILD_BAM_INDEX.0),Some(s3://bioos-wcggjkmleig4cter9da80/02_TestData/HCC-004-1.recaled.chr22.bam.bai),/cromwell-executions/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/inputs/bioos-wcggjkmleig4cter9da80/02_TestData/HCC-004-1.recaled.chr22.bam.bai,Some(FILE),None)
+Input(Some(DeNovoCNN.denovoCNN.REFERENCE_GENOME.0),Some(DeNovoCNN.DeNovoCNN.denovoCNN.REFERENCE_GENOME.0),Some(s3://bioos-wcggjkmleig4cter9da80/03_RefData/Homo_sapiens_assembly38.fasta),/cromwell-executions/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/inputs/bioos-wcggjkmleig4cter9da80/03_RefData/Homo_sapiens_assembly38.fasta,Some(FILE),None)
+Input(Some(DeNovoCNN.denovoCNN.FATHER_BAM.0),Some(DeNovoCNN.DeNovoCNN.denovoCNN.FATHER_BAM.0),Some(s3://bioos-wcggjkmleig4cter9da80/02_TestData/HCC-004-2.recaled.chr22.bam),/cromwell-executions/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/inputs/bioos-wcggjkmleig4cter9da80/02_TestData/HCC-004-2.recaled.chr22.bam,Some(FILE),None)
+Input(Some(DeNovoCNN.denovoCNN.CHILD_BAM.0),Some(DeNovoCNN.DeNovoCNN.denovoCNN.CHILD_BAM.0),Some(s3://bioos-wcggjkmleig4cter9da80/02_TestData/HCC-004-1.recaled.chr22.bam),/cromwell-executions/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/inputs/bioos-wcggjkmleig4cter9da80/02_TestData/HCC-004-1.recaled.chr22.bam,Some(FILE),None)
+Input(Some(commandScript),Some(DeNovoCNN.denovoCNN.commandScript),Some(s3://bioos-wcggjkmleig4cter9da80/analysis/scggq5vdeig40ooi8425g/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/execution/script),/cromwell-executions/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/execution/script,Some(FILE),None)
+### 解析的shell脚本
+2023-03-27 14:07:05,720 INFO  - TesAsyncBackendJobExecutionActor [UUID(0f5a18ea)DeNovoCNN.denovoCNN:NA:1]: `set -ex
+
+ulimit -n 100000
+if [ -z &quot;$TMPDIR&quot; ]; 
+then
+        export TMPDIR=$(pwd)
+fi
+
+bash /app/apply_denovocnn.sh \
+        -w=./ \
+        --child-vcf=/cromwell-executions/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/inputs/bioos-wcggjkmleig4cter9da80/02_TestData/HCC-004-1.chr22.recode.vcf \
+        --father-vcf=/cromwell-executions/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/inputs/bioos-wcggjkmleig4cter9da80/02_TestData/HCC-004-2.chr22.recode.vcf \
+        --mother-vcf=/cromwell-executions/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/inputs/bioos-wcggjkmleig4cter9da80/02_TestData/HCC-004-3.chr22.recode.vcf \
+        --child-bam=/cromwell-executions/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/inputs/bioos-wcggjkmleig4cter9da80/02_TestData/HCC-004-1.recaled.chr22.bam \
+        --father-bam=/cromwell-executions/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/inputs/bioos-wcggjkmleig4cter9da80/02_TestData/HCC-004-2.recaled.chr22.bam \
+        --mother-bam=/cromwell-executions/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/inputs/bioos-wcggjkmleig4cter9da80/02_TestData/HCC-004-3.recaled.chr22.bam \
+        --snp-model=/app/models/snp \
+        --in-model=/app/models/ins \
+        --del-model=/app/models/del \
+        --genome=/cromwell-executions/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/inputs/bioos-wcggjkmleig4cter9da80/03_RefData/Homo_sapiens_assembly38.fasta \
+        --output=family_predictionsWholeGenome.csv`
+### TESK 启动计算环境，task运行情况
+2023-03-27 14:07:10,329 INFO  - TesAsyncBackendJobExecutionActor [UUID(0f5a18ea)DeNovoCNN.denovoCNN:NA:1]: job id: task-20486aa7
+2023-03-27 14:07:10,335 INFO  - TesAsyncBackendJobExecutionActor [UUID(0f5a18ea)DeNovoCNN.denovoCNN:NA:1]: Status change from - to Running
+2023-03-27 14:26:37,731 INFO  - TesAsyncBackendJobExecutionActor [UUID(0f5a18ea)DeNovoCNN.denovoCNN:NA:1]: Job task-20486aa7 is complete
+2023-03-27 14:26:37,731 INFO  - TesAsyncBackendJobExecutionActor [UUID(0f5a18ea)DeNovoCNN.denovoCNN:NA:1]: Status change from Running to Complete
+
+### cromwell工作流运行情况，写出结果
+2023-03-27 14:26:42,245 INFO  - WorkflowExecutionActor-0f5a18ea-773e-478a-9653-cdc81ad83542 [UUID(0f5a18ea)]: Workflow DeNovoCNN complete. Final Outputs:
+{
+  &quot;DeNovoCNN.output_vcf&quot;: &quot;s3://bioos-wcggjkmleig4cter9da80/analysis/scggq5vdeig40ooi8425g/DeNovoCNN/0f5a18ea-773e-478a-9653-cdc81ad83542/call-denovoCNN/execution/family_predictionsWholeGenome.csv&quot;
+}
+2023-03-27 14:26:42,248 INFO  - $c [UUID(0f5a18ea)]: Copying workflow logs from /app/cromwell-workflow-logs/workflow.0f5a18ea-773e-478a-9653-cdc81ad83542.log to s3://bioos-wcggjkmleig4cter9da80/analysis/scggq5vdeig40ooi8425g/workflow.0f5a18ea-773e-478a-9653-cdc81ad83542.log
+</code></pre>
+<pre><code># cromwell识别WDL的版本
+2023-03-27 14:06:55,947 INFO  - MaterializeWorkflowDescriptorActor [UUID(0f5a18ea)]: Parsing workflow as WDL 1.0
+# cromwell识别 backend TES协议
+2023-03-27 14:06:55,996 INFO  - MaterializeWorkflowDescriptorActor [UUID(0f5a18ea)]: Call-to-Backend assignments: DeNovoCNN.denovoCNN -&gt; TES
+2023-03-27 14:06:58,034 INFO  - WorkflowExecutionActor-0f5a18ea-773e-478a-9653-cdc81ad83542 [UUID(0f5a18ea)]: Starting DeNovoCNN.denovoCNN
+# 判断task是否符合callcache的条件
+2023-03-27 14:07:05,683 INFO  - 0f5a18ea-773e-478a-9653-cdc81ad83542-EngineJobExecutionActor-DeNovoCNN.denovoCNN:NA:1 [UUID(0f5a18ea)]: Could not copy a suitable cache hit for 0f5a18ea:DeNovoCNN.denovoCNN:-1:1. No copy attempts were made.
+2023-03-27 14:07:05,714 INFO  - TesAsyncBackendJobExecutionActor 
+# 解析的shell脚本
+[UUID(0f5a18ea)DeNovoCNN.denovoCNN:NA:1]: `set -ex ....`
+
+# 解析输出文件路径
+2023-03-27 14:07:05,715 INFO  - TesAsyncBackendJobExecutionActor [UUID(0f5a18ea)DeNovoCNN.denovoCNN:NA:1]: Calculated TES outputs (found 6): 
+....
+
+# cromwell 解析输入文件路径
+2023-03-27 14:07:05,720 INFO  - TesAsyncBackendJobExecutionActor [UUID(0f5a18ea)DeNovoCNN.denovoCNN:NA:1]: Calculated TES inputs (found 12): 
+....
+
+# 解析的shell脚本
+2023-03-27 14:07:05,720 INFO  - TesAsyncBackendJobExecutionActor [UUID(0f5a18ea)DeNovoCNN.denovoCNN:NA:1]: `set -ex .....`
+# TESK 启动计算环境，task运行情况
+2023-03-27 14:07:10,329 INFO  - TesAsyncBackendJobExecutionActor [UUID(0f5a18ea)DeNovoCNN.denovoCNN:NA:1]: job id: task-20486aa7
+2023-03-27 14:07:10,335 INFO  - TesAsyncBackendJobExecutionActor [UUID(0f5a18ea)DeNovoCNN.denovoCNN:NA:1]: Status change from - to Running
+2023-03-27 14:26:37,731 INFO  - TesAsyncBackendJobExecutionActor [UUID(0f5a18ea)DeNovoCNN.denovoCNN:NA:1]: Job task-20486aa7 is complete
+2023-03-27 14:26:37,731 INFO  - TesAsyncBackendJobExecutionActor [UUID(0f5a18ea)DeNovoCNN.denovoCNN:NA:1]: Status change from Running to Complete
+
+# cromwell工作流运行情况，写出结果
+2023-03-27 14:26:42,245 INFO  - WorkflowExecutionActor-0f5a18ea-773e-478a-9653-cdc81ad83542 [UUID(0f5a18ea)]: Workflow DeNovoCNN complete. Final Outputs:
+{......}
+</code></pre>
+<h3 id="dockstore">**七、将工作流注册到 Dockstore</h3>
+<p>广州实验室本地化工作流仓库（Dockstore）积累了大量可用工作流。</p>
+<h4 id="71">7.1 登陆工作流仓库</h4>
+<p>链接地址：<a href="https://dockstore.miracle.ac.cn/">https://dockstore.miracle.ac.cn/</a></p>
+<p>账号：推荐使用广州实验室本地化代码仓库(GZNL Gitlab)账号登陆</p>
+<p><img alt="" src="../_resources/boxcn01A2RjXbrQBtg6KaHkiHqf.png" /></p>
+<h4 id="72">7.2 工作流注册</h4>
+<p>Dockstore 中工作流的基本单元是工作流，一个 Dockstore 中只包含一个工作流。</p>
+<p>工作流中用 import 导入的工作流会同时被拉取显示在 Dockstore 中。</p>
+<p>1.在 Dockstore 导航右上角的下拉菜单，点击进入/my-workflows</p>
+<p>2.在页面左侧边栏上点击【+】的按钮</p>
+<p>3.将出现一个窗口，询问您希望如何注册您的工具、工作流程或服务。选择【Registry custom remote workflows】</p>
+<p>4.选择 Gitlab 仓库、工作流语言，填写工作流路径和名字，注册</p>
+<p>5.注册工作流成功后，在页面右侧列出已注册的工作流列表，同时支持点击【Publish】【Refresh】进行发布和同步</p>
+<p><img alt="" src="../_resources/boxcnSxIVrOYLDUdZIjw0caPWMh.png" /></p>
+<p><img alt="" src="../_resources/boxcnm63UDrB0GP2sUMyBYyp8Eg.png" /></p>
+<h3 id="_9">八、经验总结</h3>
+<h4 id="81">8.1 如何<strong>利用日志/报错定位报错点</strong></h4>
+<p>工作流解析过程，总共 10 步：</p>
+<ol>
+<li>明确 WDL 的版本</li>
+<li>明确 cromwell backend TES</li>
+<li>判断 task 是否符合 callcache 的条件</li>
+<li>解析的 shell 脚本</li>
+<li>解析输出文件路径</li>
+<li>解析输入文件路径</li>
+<li>解析的 shell 脚本</li>
+<li>启动计算环境，task 运行情况</li>
+<li>{task 运行过程}</li>
+<li>启动计算环境，工作流运行情况，写出结果</li>
+</ol>
+<p>task 执行过程，共 6 步：</p>
+<ol>
+<li>挂载存储到计算环境</li>
+<li>开始下载输入文件</li>
+<li>创建执行 pod,运行任务</li>
+<li>上传运行结果：从 K8s 计算环境上传到 Workspace 对象存储桶</li>
+<li>数据上传完成后删除运行环境</li>
+<li>运行过程顺序执行；</li>
+<li>错误原因根据</li>
+</ol>
+<h4 id="82-wdl">8.2 WDL 部分</h4>
+<p>在 WDL 的不同版本：</p>
+<p>平台暂时支持 version 1.0</p>
+<p>command 中的变量：</p>
+<p>${A} 占位符，用于接收外部变量值</p>
+<p>$A ：shell 内部正常变量</p>
+<p>output：</p>
+<p>只接受占位符形式的变量；对于 shell 变量生成的文件，需要用字符串</p>
+<p>runtime 目前支持的属性：</p>
+<pre><code>&quot;disks&quot;,
+
+&quot;memory&quot;,
+
+&quot;zones&quot;,
+
+&quot;continueOnReturnCode&quot;,
+
+&quot;cpu&quot;,
+
+&quot;noAddress&quot;,
+
+&quot;docker&quot;,
+
+&quot;queueArn&quot;,
+
+&quot;failOnStderr&quot;,
+</code></pre>
+<h4 id="71-docker-image-modification-and-save">7.1 Docker Image Modification and Save</h4>
+<p>修改原本的 docker 镜像并保存修改，用于分析。</p>
+<pre><code># 进入docker环境
+docker run -it 镜像ID /bin/bash
+
+# install vim 
+apt-get install vim
+
+# 保存修改
+docker commit 36655b872cf9 gelana/denovocnn_1
+
+docker images | grep gelana/denovocnn
+docker inspect gelana/denovocnn_1:latest
+</code></pre>
+<h4 id="72-wdl">7.2 WDL 中利用相对路径索引输出</h4>
+<p>当遇到一些软件需要指定输出文件夹时，用绝对路径无法返回输出，这时用相对路径"."就可以实现。</p>
+<p>Example json:</p>
+<pre><code>{
+  &quot;DeNovoCNN.CHILD_BAM&quot;: &quot;/data/lzq/Software/DenovoCNN/TestData/chr22/HCC-004-1.recaled.chr22.bam&quot;,
+  &quot;DeNovoCNN.CHILD_BAM_INDEX&quot;: &quot;/data/lzq/Software/DenovoCNN/TestData/chr22/HCC-004-1.recaled.chr22.bam.bai&quot;,
+  &quot;DeNovoCNN.CHILD_VCF&quot;: &quot;/data/lzq/Software/DenovoCNN/TestData/chr22/HCC-004-1.chr22.recode.vcf&quot;,
+  &quot;DeNovoCNN.SNP_MODEL&quot;: &quot;/app/models/snp&quot;,
+  &quot;DeNovoCNN.FATHER_VCF&quot;: &quot;/data/lzq/Software/DenovoCNN/TestData/chr22/HCC-004-2.chr22.recode.vcf&quot;,
+  &quot;DeNovoCNN.DISK&quot;: &quot;100&quot;,
+  &quot;DeNovoCNN.INSERTION_MODEL&quot;: &quot;/app/models/ins&quot;,
+  &quot;DeNovoCNN.DELETION_MODEL&quot;: &quot;/app/models/del&quot;,
+  &quot;DeNovoCNN.OUTFILE_NAME&quot;: &quot;Test&quot;,
+  &quot;DeNovoCNN.FATHER_BAM_INDEX&quot;: &quot;/data/lzq/Software/DenovoCNN/TestData/chr22/HCC-004-2.recaled.chr22.bam.bai&quot;,
+  &quot;DeNovoCNN.FATHER_BAM&quot;: &quot;/data/lzq/Software/DenovoCNN/TestData/chr22/HCC-004-2.recaled.chr22.bam&quot;,
+  &quot;DeNovoCNN.NUM_THREAD&quot;: &quot;10&quot;,
+  &quot;DeNovoCNN.MEMORY&quot;: &quot;50&quot;,
+  &quot;DeNovoCNN.MOTHER_VCF&quot;: &quot;/data/lzq/Software/DenovoCNN/TestData/chr22/HCC-004-3.chr22.recode.vcf&quot;,
+  &quot;DeNovoCNN.docker&quot;: &quot;gelana/denovocnn_1:latest&quot;,
+  &quot;DeNovoCNN.MOTHER_BAM_INDEX&quot;: &quot;/data/lzq/Software/DenovoCNN/TestData/chr22/HCC-004-3.recaled.chr22.bam.bai&quot;,
+  &quot;DeNovoCNN.MOTHER_BAM&quot;: &quot;/data/lzq/Software/DenovoCNN/TestData/chr22/HCC-004-3.recaled.chr22.bam&quot;,
+  &quot;DeNovoCNN.WORKING_DIRECTORY&quot;: &quot;.&quot;,
+  &quot;DeNovoCNN.REFERENCE_GENOME&quot;: &quot;/data/lzq/Reference/GZNL/broad_reference/v0/Homo_sapiens_assembly38.fasta&quot;
+}
+</code></pre>
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+    <div class="md-copyright__highlight">
+      如您遇到任何问题，请通过 <a href="https://git.miracle.ac.cn/Pretest/miracle_cloud/-/issues">Miracle Cloud Gitlab Issue</a>向我们反馈，我们将在第一时间内为您解决。
+    </div>
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.208ed371.min.js", "translations": {"clipboard.copied": "\u5df2\u590d\u5236", "clipboard.copy": "\u590d\u5236", "search.result.more.one": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.more.other": "\u5728\u8be5\u9875\u4e0a\u8fd8\u6709 # \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.none": "\u6ca1\u6709\u627e\u5230\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.one": "\u627e\u5230 1 \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.other": "# \u4e2a\u7b26\u5408\u6761\u4ef6\u7684\u7ed3\u679c", "search.result.placeholder": "\u952e\u5165\u4ee5\u5f00\u59cb\u641c\u7d22", "search.result.term.missing": "\u7f3a\u5c11", "select.version": "\u9009\u62e9\u5f53\u524d\u7248\u672c"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.19047be9.min.js"></script>
+      
+    
+  </body>
+</html>
